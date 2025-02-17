@@ -1,6 +1,6 @@
 package UD4;
 
-public class Ejercicio1 {
+public class Ejercicio1App {
 
 	public static void main(String[] args) {
 		float a=5, b=10, suma, resta, div, mult, mod;

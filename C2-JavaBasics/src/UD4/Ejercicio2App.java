@@ -1,6 +1,6 @@
 package UD4;
 
-public class Ejercicio2 {
+public class Ejercicio2App {
 
 	public static void main(String[] args) {
 		int N=5, suma, resta, valor;
