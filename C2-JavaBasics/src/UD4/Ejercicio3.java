@@ -13,10 +13,15 @@ public class Ejercicio3 {
 		double suma2=N+M, resta2=N-M, mult2=N*M;
 		float div1=X/Y, div2=(int)N/(int)M, div3=Y/(int)M, perc1=X%Y, perc2=(int)N%(int)M, perc3=Y%(int)M;
 		
-		System.out.println("Valor de X: "+X+".\n"+"Valor de Y: "+Y+".\n"
-							+"Valor de N: "+N+".\n"+"Valor de M: "+M+".\n"+"Suma X+Y: "+suma1+".\n"
-							+"Diferencia X-Y: "+resta1+".\n"+"Producto X*Y: "+mult1+".\n"+"CocienteX/Y: "+div1+".\n"
-							+"Resto X%Y: "+perc1+".\n"+"Suma N+M: "+suma2
+		System.out.println("Valor de X: "+X+".\nValor de Y: "+Y+".\nValor de N: "+N
+							+".\nValor de M: "+M+".\nSuma X+Y: "+suma1+".\nDiferencia X-Y: "
+							+resta1+".\nProducto X*Y: "+mult1+".\nCocienteX/Y: "+div1+".\nResto X%Y: "
+							+perc1+".\nSuma N+M: "+suma2+".\nDiferencia N-M: "+resta2+".\nProducto N*M: "
+							+mult2+".\nCociente N/M: "+div2+".\nResto N%M: "+perc2
+							+".\nSuma X+N: "+suma3+".\nCociente Y/M: "+div3+".\nResto Y%M: "+perc3
+							+".\nEl doble de cada variable: "+dobleX+", "+dobleY+", "+dobleN+", "+dobleM+
+							".\nLa suma de todas las variables: "+sumatotal+
+							".\nEl producto de todas las variables: "+multitotal+"."
 				
 				
 				);
