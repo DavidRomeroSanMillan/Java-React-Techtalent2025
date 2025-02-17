@@ -3,8 +3,15 @@ package UD4;
 public class Ejercicio4 {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 
+		int N=2, suma=N+77, dec=suma-3, doble=dec*2;
+		
+	System.out.println(suma + ", " + dec + ", " + doble);
+		
+		
+		
+		
+		
 	}
 
 }
