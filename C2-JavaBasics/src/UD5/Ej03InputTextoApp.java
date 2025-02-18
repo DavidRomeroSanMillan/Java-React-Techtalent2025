@@ -1,7 +1,7 @@
 package UD5;
 import java.util.Scanner;
 
-public class Ejercicio3App {
+public class Ej03InputTextoApp {
 
 	public static void main(String[] args) {
 		

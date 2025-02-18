@@ -1,7 +1,7 @@
 package UD5;
 import javax.swing.JOptionPane;
 
-public class Prueba3App {
+public class Ej03InputJOptionApp {
 
 	public static void main(String[] args) {
 		

@@ -1,6 +1,6 @@
 package UD5;
 
-public class Ejercicio2App {
+public class Ej02ConcatenacionApp {
 
 	public static void main(String[] args) {
 		String nom="David";

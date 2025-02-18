@@ -1,6 +1,6 @@
 package UD5;
 
-public class Ejercicio1App {
+public class Ej01ComparacionApp {
 
 	public static void main(String[] args) {
 		
