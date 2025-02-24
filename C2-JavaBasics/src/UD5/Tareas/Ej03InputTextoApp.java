@@ -1,4 +1,4 @@
-package UD5;
+package UD5.Tareas;
 import java.util.Scanner;
 
 public class Ej03InputTextoApp {
