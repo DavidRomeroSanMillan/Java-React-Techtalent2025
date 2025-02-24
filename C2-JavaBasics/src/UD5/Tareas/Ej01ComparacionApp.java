@@ -4,12 +4,15 @@ public class Ej01ComparacionApp {
 
 	public static void main(String[] args) {
 		
-		int A=5, B=2;
-		boolean resultado;
+		int A=5, B=5;
+		boolean resultadoMayor =A>B;
+		boolean resultadoMenor =A<B;
+		boolean resultadoIgual =A==B;
 		
-		resultado = A>B;
 		
-		System.out.println(resultado);
+		System.out.println(A +" es mayor que " +B+ "? " +resultadoMayor);
+		System.out.println(A +" es menor que " +B+ "? " +resultadoMenor);
+		System.out.println(A +" es igual que " +B+ "? " +resultadoIgual);
 				
 
 	}
