@@ -14,6 +14,6 @@ public class Ej05ParImparApp {
 			if ((numfl%2)==0) {JOptionPane.showMessageDialog(null, "El número " +num+" es par.");}
 			else {JOptionPane.showMessageDialog(null, "El número " +num+" es impar.");}
 		
-	}
+		}
 
 }
