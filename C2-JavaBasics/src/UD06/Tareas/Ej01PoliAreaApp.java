@@ -14,7 +14,7 @@ public class Ej01PoliAreaApp {
 			break;
 		case "triangulo":
 			double base = Double.parseDouble(JOptionPane.showInputDialog("Introduce la base del triángulo: "));
-			double altura = Double.parseDouble(JOptionPane.showInputDialog("Introduce la altura del círculo: "));
+			double altura = Double.parseDouble(JOptionPane.showInputDialog("Introduce la altura del triángulo: "));
 			JOptionPane.showMessageDialog(null, "El área de un triángulo de " + base + " de base y " + altura
 					+ " de altura es de: " + triangulo(base, altura));
 			break;
