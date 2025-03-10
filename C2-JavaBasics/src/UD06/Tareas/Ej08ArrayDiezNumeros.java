@@ -1,31 +1,29 @@
 package UD06.Tareas;
 
-
 import java.util.Scanner;
-
 public class Ej08ArrayDiezNumeros {
 
 	public static void main(String[] args) {
-		//Array de 10 posiciones
-		int num = 10;
-		int []array= new int [num];
-		
-		Scanner scRellenar = new Scanner(System.in);
-		for (int i=0; i<array.length; i++) {
-			array [i]=scRellenar.nextInt();
-			
-			
+
+		int num[] =rellenarArrayDesde(5);
+		imprimirArray(num);
+
+	}
+	
+	public static int[] rellenarArrayDesde(int a) {
+		Scanner sc = new Scanner(System.in);
+		int num[] = new int[10];
+		for (int i = 0; i < num.length; i++) {
+			num[i]=Integer.parseInt(sc.nextLine());
 		}
 		
+		return num;
+	}
 	
-
-//	public static rellenar {
-		
-		
+	public static void imprimirArray (int lista[]) {
+		for (int i = 0; i < lista.length; i++) {
+			System.out.println(lista[i]);
+		}
 	}
-//	
-//	public static String mostrar 
-
-	}
-
-
+		
+}
