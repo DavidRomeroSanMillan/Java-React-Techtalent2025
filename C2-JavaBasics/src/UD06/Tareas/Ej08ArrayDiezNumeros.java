@@ -1,16 +1,17 @@
 package UD06.Tareas;
 
+import java.util.Arrays;
 import java.util.Scanner;
 public class Ej08ArrayDiezNumeros {
 
 	public static void main(String[] args) {
 
-		int num[] =rellenarArrayDesde(5);
+		int num[] =rellenarArray(0);
 		imprimirArray(num);
 
 	}
 	
-	public static int[] rellenarArrayDesde(int a) {
+	public static int[] rellenarArray(int a) {
 		Scanner sc = new Scanner(System.in);
 		int num[] = new int[10];
 		for (int i = 0; i < num.length; i++) {
@@ -21,8 +22,8 @@ public class Ej08ArrayDiezNumeros {
 	}
 	
 	public static void imprimirArray (int lista[]) {
-		for (int i = 0; i < lista.length; i++) {
-			System.out.println(lista[i]);
+		for (int i = 0; i < lista.length; i++) {System.out.println("El índice " + Arrays.asList(lista).indexOf(i) 
+				+ " tiene el número: "+lista[i]); 			
 		}
 	}
 		
