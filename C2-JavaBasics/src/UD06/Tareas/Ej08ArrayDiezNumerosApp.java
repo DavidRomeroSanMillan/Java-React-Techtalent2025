@@ -1,8 +1,7 @@
 package UD06.Tareas;
 
-import java.util.Arrays;
 import java.util.Scanner;
-public class Ej08ArrayDiezNumeros {
+public class Ej08ArrayDiezNumerosApp {
 
 	public static void main(String[] args) {
 
@@ -22,7 +21,7 @@ public class Ej08ArrayDiezNumeros {
 	}
 	
 	public static void imprimirArray (int lista[]) {
-		for (int i = 0; i < lista.length; i++) {System.out.println("El índice " + Arrays.asList(lista).indexOf(i) 
+		for (int i = 0; i < lista.length; i++) {System.out.println("El índice " + i 
 				+ " tiene el número: "+lista[i]); 			
 		}
 	}
