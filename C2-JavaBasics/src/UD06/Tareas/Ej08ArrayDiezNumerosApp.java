@@ -13,8 +13,9 @@ public class Ej08ArrayDiezNumerosApp {
 	public static int[] rellenarArray(int a) {
 		Scanner sc = new Scanner(System.in);
 		int num[] = new int[10];
+		System.out.println("Introduce los 10 números del array: ");
 		for (int i = 0; i < num.length; i++) {
-			num[i]=Integer.parseInt(sc.nextLine());
+			num[i] = Integer.parseInt(sc.nextLine());
 		}
 		
 		return num;

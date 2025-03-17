@@ -7,13 +7,11 @@ public class Ej06ContadorNumeroApp {
 	public static void main(String[] args) {
 
 		String numero = "";
-		
+
 		do {
-			System.out.println("Ingresa un número entero positivo");
-			 numero = JOptionPane.showInputDialog("Introduce un número");
+			numero = JOptionPane.showInputDialog("Introduce un número entero positivo: ");
 		} while (Integer.parseInt(numero) < 0);
-		
-		
+
 		JOptionPane.showMessageDialog(null, "Este número tiene " + contador(numero) + " cifras.");
 	}
 
