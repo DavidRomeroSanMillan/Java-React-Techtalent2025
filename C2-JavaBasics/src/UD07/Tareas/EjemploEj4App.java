@@ -153,14 +153,14 @@ public class EjemploEj4App {
             return;
         }
 
-        double suma = carrito.stream().mapToDouble(Double::doubleValue).sum();
+        double suma = carrito.stream().mapToDouble(Double::doubleValue).sum();//Intentar hacer un foreach en vez de un stream de datos
         String[] opcionesIVA = {"21%", "4%"};
-        int opcionIVA = JOptionPane.showOptionDialog(null, "Selecciona el IVA:",
+        int opcionIVA = JOptionPane.showOptionDialog(null, "Selecciona el IVA:", //Rectificar ternario del IVA
                 "IVA", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE,
                 null, opcionesIVA, opcionesIVA[0]);
 
-        double IVA = opcionIVA == 0 ? 0.21 : 0.04;
-        double totalConIVA = suma * (1 + IVA);
+        double IVA = opcionIVA == 0 ? 0.21 : 0.04; //Ternario wtf? Por qué no poner que cada botón referencia a los porcentajes tal cual?
+        double totalConIVA = suma * (1 + IVA); //Hacer un String.format("%.2f", y lo que sea) para truncar decimales
 
         double pago = Double.parseDouble(JOptionPane.showInputDialog("Total: " + totalConIVA + "€. Introduce el pago:"));
         double cambio = pago - totalConIVA;
