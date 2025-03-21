@@ -65,17 +65,11 @@ public class Ej01MediaAlumnosApp {
 
 	}
 
-//	private static ArrayList<String> imprimirAlumnos(ArrayList<String> alumnos) {
-//		for (String alumno : alumnos) {
-//		}
-//		return alumnos;
-
-//	}
 	public static ArrayList<Double> afegirNota0(ArrayList<Double> notas0) {
 		Scanner scanNota = new Scanner(System.in);
 
 		do {
-			notas0.add(Double.parseDouble(scanNota.nextLine()));
+			notas0.add(scanNota.nextDouble());
 		} while (notas0.size() <= 2);
 
 		return notas0;
