@@ -162,7 +162,7 @@ public class Ej04CombinacionApp {
         double IVA = opcionIVA == 0 ? 0.21 : 0.04; //Ternario wtf? Por qué no poner que cada botón referencia a los porcentajes tal cual?
         double totalConIVA = suma * (1 + IVA); //Hacer un String.format("%.2f", y lo que sea) para truncar decimales
 
-        double pago = Double.parseDouble(JOptionPane.showInputDialog("Total: " + totalConIVA + "€. Introduce el pago:"));
+        double pago = Double.parseDouble(JOptionPane.showInputDialog("Total: " + String.format("%.2f", totalConIVA) + "€. Introduce el pago:"));
         double cambio = pago - totalConIVA;
 
         if (cambio < 0) {
