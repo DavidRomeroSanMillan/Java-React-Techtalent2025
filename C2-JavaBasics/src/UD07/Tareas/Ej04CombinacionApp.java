@@ -72,7 +72,7 @@ public class Ej04CombinacionApp {
 			case 2 -> {
 				JOptionPane.showMessageDialog(null, "Volviendo al menú principal...");
 				seguirComprando = false;
-				elegirModo(); // Volver al menú principal
+				elegirModo(); // Tornar al menú principal
 			}
 			}
 		}
@@ -89,7 +89,7 @@ public class Ej04CombinacionApp {
 	// Llista dels productes disponibles
 	private static void listarProductos() {
 		System.out.println("\n===== LISTA DE PRODUCTOS =====");
-		inventario.forEach((producto, info) -> {
+		inventario.forEach((producto, info) -> { //expressió lambda que aplica el que hi ha entre claus de forma més concisa 
 			System.out.println(
 					producto + " → Precio: " + info.get("precio") + "€, Stock: " + info.get("stock").intValue());
 		});
@@ -156,9 +156,9 @@ public class Ej04CombinacionApp {
 		double suma = 0;
 		for (double precio : carrito) {
 			suma += precio;
-		} // Intentar hacer un foreach en vez de un stream de datos
+		} 
 		String[] opcionesIVA = { "21%", "4%" };
-		int opcionIVA = JOptionPane.showOptionDialog(null, "Selecciona el IVA:", // Rectificar ternario del IVA
+		int opcionIVA = JOptionPane.showOptionDialog(null, "Selecciona el IVA:", 
 				"IVA", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, opcionesIVA, opcionesIVA[0]);
 
 		double IVA = opcionIVA == 0 ? 0.21 : 0.04;
