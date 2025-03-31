@@ -18,18 +18,18 @@ public class Ej01Persona {
 		this.altura = 0.0;
 	}
 
-	public Ej01Persona(String nombre, int edad) {
+	public Ej01Persona(String nombre, int edad, String sexo) {
 		this.nombre = nombre;
 		this.edad = edad;
 		this.dni = "12345678A";
-		this.sexo = "M";
+		this.sexo = sexo;
 	}
 
-	public Ej01Persona(String nombre, int edad, String dni, double peso, double altura) {
+	public Ej01Persona(String nombre, int edad, String dni, String sexo, double peso, double altura) {
 		this.nombre = nombre;
 		this.edad = edad;
 		this.dni = dni;
-		this.sexo = "M";
+		this.sexo = sexo;
 		this.peso = peso;
 		this.altura = altura;
 
