@@ -9,7 +9,7 @@ public class ElectroApp {
 			Electrodoméstico electro2 = new Electrodoméstico(500, 150.7);
 			electro2.mostrarElectro();
 			
-			Electrodoméstico electro3 = new Electrodoméstico(600, "negro", "B", 150.7);
+			Electrodoméstico electro3 = new Electrodoméstico(100, "negro", "A", 200);
 			electro3.mostrarElectro();
 		}
 
