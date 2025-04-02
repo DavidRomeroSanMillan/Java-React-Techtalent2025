@@ -1,6 +1,6 @@
 package UD09.Ej01Electro;
 
-public class Electrodoméstico {
+public abstract class Electrodoméstico implements Electrodomesticable{
 	protected double precioBase;
 	protected String color;
 	protected String consumo;
@@ -42,7 +42,7 @@ public class Electrodoméstico {
 
 	}
 
-	public void mostrarElectro() {
+	public void mostrar() {
 		System.out.println("El electrodoméstico es " + this.color + ", cuesta " 
 							+ this.precioBase + ", tiene consumo "
 							+ this.consumo + " y pesa " + this.peso + " kilos.");

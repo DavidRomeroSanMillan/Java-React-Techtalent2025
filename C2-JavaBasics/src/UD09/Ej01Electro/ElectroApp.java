@@ -1,16 +1,23 @@
-package UD09.Ej01Electro;
+package UD09.Ej01Electro;;
+
 
 public class ElectroApp {
 
 	public static void main(String[] args) {
-			Electrodoméstico electro1 = new Electrodoméstico();
-			electro1.mostrarElectro();
 			
-			Electrodoméstico electro2 = new Electrodoméstico(500, 150.7);
-			electro2.mostrarElectro();
+			Lavadora Siemens = new Lavadora ();
+			Siemens.mostrar();
+			Lavadora Balay = new Lavadora (200, 20);
+			Balay.mostrar();
+			Lavadora Fagor = new Lavadora (500.0, "rojo", "C", 200.0, 35.0);
+			Fagor.mostrar();
 			
-			Electrodoméstico electro3 = new Electrodoméstico(100, "negro", "A", 200);
-			electro3.mostrarElectro();
+			Televisor Sony = new Televisor();
+			Sony.mostrar();
+			Televisor Huawei = new Televisor(150, 25);
+			Huawei.mostrar();
+			Televisor HP = new Televisor(250, "negro", "B", 25, 20, true);
+			HP.mostrar();
 		}
 
 	}

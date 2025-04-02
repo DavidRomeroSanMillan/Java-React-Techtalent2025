@@ -4,17 +4,17 @@ public class Lavadora extends Electrodoméstico {
 	protected double carga;
 	protected final double CARGA = 5;
 
-	public Lavadora() {
+	Lavadora() {
 		this.carga = CARGA;
 
 	}
 
-	public Lavadora(double precioBase, double carga) {
+	Lavadora(double precioBase, double carga) {
 		this.carga = carga;
 		this.precioBase = precioFinal(precioBase, this.consumo, this.peso, this.carga);
 	}
 
-	public Lavadora(double precioBase, String color, String consumo, double peso, double carga) {
+	Lavadora(double precioBase, String color, String consumo, double peso, double carga) {
 		this.precioBase = precioBase;
 		setColor(color);
 		setConsumo(consumo);
@@ -23,8 +23,14 @@ public class Lavadora extends Electrodoméstico {
 		this.precioBase = precioFinal(precioBase, this.consumo, this.peso, this.carga);
 		
 	}
+	public void mostrar() {
+		System.out.println("La lavadora es de color " + this.color + ", cuesta " 
+							+ this.precioBase + ", tiene consumo "
+							+ this.consumo + ", pesa " + this.peso 
+							+ " kilos y soporta una carga de "+this.carga+".");
+	}
 
-	protected double precioFinal(double precioBase, String consumo, double peso, double carga) {
+	public double precioFinal(double precioBase, String consumo, double peso, double carga) {
 
 		switch (consumo) {
 		case "A" -> precioBase += 100;
@@ -47,6 +53,7 @@ public class Lavadora extends Electrodoméstico {
 		} else if (peso <= 19) {
 			precioBase += 10;
 		}
+		
 		if (carga > 30) {
 			precioBase += 50;
 
