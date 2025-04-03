@@ -46,7 +46,7 @@ public abstract class Electrodoméstico implements Electrodomesticable{
 							+ this.consumo + " y pesa " + this.peso + " kilos.");
 	}
 
-	protected double precioFinal(double precioBase, String consumo, 
+	protected double precioBase(double precioBase, String consumo, 
 										double peso) {
 
 		switch (consumo) {
