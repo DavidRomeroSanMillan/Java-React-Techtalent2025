@@ -28,7 +28,6 @@ public abstract class Electrodoméstico implements Electrodomesticable{
 		this.peso = peso;
 		this.color = COLOR;
 		this.consumo = CONSUMO;
-		this.precioBase=precioFinal(precioBase, this.consumo, this.peso);
 	}
 
 	Electrodoméstico(double precioBase, String color, String consumo, 
@@ -37,7 +36,6 @@ public abstract class Electrodoméstico implements Electrodomesticable{
 		setColor(color);
 		setConsumo(consumo);
 		this.peso = peso;
-		this.precioBase=precioFinal(precioBase, this.consumo, this.peso);
 		
 
 	}

@@ -16,7 +16,7 @@ public class ElectroApp {
 			Sony.mostrar();
 			Televisor Huawei = new Televisor(150, 25);
 			Huawei.mostrar();
-			Televisor HP = new Televisor(250, "negro", "B", 25, 20, true);
+			Televisor HP = new Televisor(250, "negro", "B", 25, 50, true);
 			HP.mostrar();
 		}
 

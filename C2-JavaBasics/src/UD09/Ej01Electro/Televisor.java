@@ -8,23 +8,23 @@ public class Televisor extends Electrodoméstico {
 	protected final boolean TDT = false;
 
 	Televisor(){
-		this.resolucion=RESOLUCION;
-		this.tdt=TDT;
-		this.precioBase = precioFinal(this.precioBase, this.consumo, this.peso, this.resolucion, this.tdt);
-	}
+		super();
+        this.resolucion = 20;
+        this.tdt = false;
+        this.precioBase = precioFinal(super.precioBase, this.consumo, this.peso, this.resolucion, this.tdt);
+    }
 	Televisor(double precioBase, double peso){
 		super(precioBase, peso);
-		this.resolucion=RESOLUCION;
-		this.tdt=TDT;
-		this.precioBase = precioFinal(this.precioBase, this.consumo, this.peso, this.resolucion, this.tdt);
-	}
+        this.resolucion = 20;
+        this.tdt = false;
+        this.precioBase = precioFinal(super.precioBase, this.consumo, this.peso, this.resolucion, this.tdt);
+    }
 	Televisor(double precioBase, String color, String consumo, double peso, double resolucion, boolean tdt){
-		super(precioBase, color, consumo, peso);
-		this.resolucion=resolucion;
-		this.tdt=tdt;
-		this.precioBase= precioFinal(this.precioBase, this.consumo, this.peso, this.resolucion, this.tdt);
-	}
-	
+		  super(precioBase, color, consumo, peso);
+	      this.resolucion = resolucion;
+	      this.tdt = tdt;
+	      this.precioBase = precioFinal(super.precioBase, this.consumo, this.peso, this.resolucion, this.tdt);
+	    }
 	public void mostrar() {
 		String tdt="";
 		if (this.tdt) {tdt="tiene tdt";
@@ -38,8 +38,7 @@ public class Televisor extends Electrodoméstico {
 							+ " kilos, "+tdt+" y la pantalla es de "+this.resolucion+".");
 	}
 	public double precioFinal(double precioBase, String consumo, double peso, double resolucion, boolean tdt) {
-		double base2=precioBase;
-		double extraResolucion= base2 * 0.3;
+		double extraResolucion= precioBase * 0.3;
 		
 		switch (consumo) {
 		case "A" -> precioBase += 100;
@@ -66,7 +65,8 @@ public class Televisor extends Electrodoméstico {
 		if (tdt) {
 			precioBase += 50;
 		}
-		if (resolucion > 40) {precioBase += extraResolucion;
+		if (resolucion > 40) {
+			precioBase += extraResolucion;
 		}
 		return precioBase;
 
