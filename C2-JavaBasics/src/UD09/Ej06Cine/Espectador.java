@@ -1,37 +1,42 @@
+
 package UD09.Ej06Cine;
 
 public class Espectador {
-    private String nombre;
-    private int edad;
-    private double dineroDisponible;
+    private String name;
+    private int age;
+    private double moneyAvailable;
 
-    public Espectador(String nombre, int edad, double dineroDisponible) {
-        this.nombre = nombre;
-        this.edad = edad;
-        this.dineroDisponible = dineroDisponible;
+    public Espectador(String name, int age, double moneyAvailable) {
+        this.name = name;
+        this.age = age;
+        this.moneyAvailable = moneyAvailable;
     }
 
-    public String getNombre() {
-        return nombre;
+    public String getName() {
+        return name;
     }
 
-    public int getEdad() {
-        return edad;
+    public int getAge() {
+        return age;
     }
 
-    public double getDineroDisponible() {
-        return dineroDisponible;
+    public double getMoneyAvailable() {
+        return moneyAvailable;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public void setEdad(int edad) {
-        this.edad = edad;
+    public void setAge(int age) {
+        this.age = age;
     }
 
-    public void setDineroDisponible(double dineroDisponible) {
-        this.dineroDisponible = dineroDisponible;
+    public void setMoneyAvailable(double moneyAvailable) {
+        this.moneyAvailable = moneyAvailable;
+    }
+
+    public boolean canAfford(double price) {
+        return this.moneyAvailable >= price;
     }
 }

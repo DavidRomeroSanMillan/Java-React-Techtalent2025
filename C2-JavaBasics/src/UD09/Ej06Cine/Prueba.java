@@ -1,3 +1,4 @@
+
 package UD09.Ej06Cine;
 
 import java.util.Random;
@@ -8,12 +9,12 @@ public class Prueba {
         Asiento[][] asientos = new Asiento[8][9];
 
         // Fill the array with Seat objects
-        char letter = 'A';
+        char letra = 'A';
         for (int i = 0; i < 9; i++) {
             for (int j = 0; j < 8; j++) {
-                asientos[j][i] = new Asiento(letter + String.valueOf(8 - j));
+                asientos[j][i] = new Asiento(letra + String.valueOf(8 - j));
             }
-            letter++;
+            letra++;
         }
 
         // Print the array
@@ -24,8 +25,8 @@ public class Prueba {
             System.out.println();
         }
 
-        // Randomly mark seats as taken
-        ocuparAsientosRandom(asientos, 30);
+        // Randomly mark seats as taken by random Espectadors
+        ocuparAsientosRandom(asientos, 30, 10.0);
 
         // Print the array with seat statuses
         for (int i = 0; i < 8; i++) {
@@ -36,8 +37,8 @@ public class Prueba {
         }
     }
 
-    // Method to randomly mark a specified number of seats as taken
-    public static void ocuparAsientosRandom(Asiento[][] asientos, int numAsientos) {
+    // Method to randomly mark a specified number of seats as taken by random Espectadors
+    public static void ocuparAsientosRandom(Asiento[][] asientos, int numAsientos, double ticketPrice) {
         Random random = new Random();
         int filas = asientos.length;
         int cols = asientos[0].length;
@@ -48,8 +49,12 @@ public class Prueba {
             int col = random.nextInt(cols);
 
             if (!asientos[row][col].isTaken()) {
-                asientos[row][col].setTaken(true);
-                asientosMarcados++;
+                Espectador espectador = new Espectador("Espectador" + asientosMarcados, random.nextInt(60) + 10, random.nextDouble() * 100);
+                if (espectador.canAfford(ticketPrice)) {
+                    asientos[row][col].setTaken(true);
+                    asientos[row][col].setEspectador(espectador);
+                    asientosMarcados++;
+                }
             }
         }
     }
