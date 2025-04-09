@@ -73,13 +73,6 @@ public class Serie implements Entregable{
 	}
 	
 	
-	public boolean entregar(boolean entregado) {
-		return false;
-	}
-
-	public boolean devolver(boolean entregado) {
-		return true;
-	}
 	
 	public String isEntregado(boolean entregado) {
 		String estadoEntrega="";
@@ -91,20 +84,27 @@ public class Serie implements Entregable{
 		return estadoEntrega;
 	}
 
-	public String compareTo(Object a) {
-		if (a instanceof Serie) {
-			Serie otraSerie = (Serie)a;
-			if(this.numTemp > otraSerie.getNumTemp()) {
-				return "La serie "+this.titulo+" tiene más temporadas que "+otraSerie.getTitulo();
-			}else if (this.numTemp < otraSerie.getNumTemp()) {
-				return "La serie "+this.titulo+" tiene menos temporadas que "+otraSerie.getTitulo();
-			}else {
-				return "La serie "+this.titulo+" tiene el mismo número de temporadas que "+otraSerie.getTitulo();
-			}
-		}else {			
-		
-		return "El objeto no es una serie.";
-	}
-	}
+	  public int compareTo(Object a) {
+	        if (a instanceof Serie) {
+	            Serie otraSerie = (Serie) a;
+	            return Integer.compare(this.numTemp, otraSerie.getNumTemp());
+	        }
+	        return 0;
+	    }
+
+	@Override
+    public void entregar() {
+        this.entregado = true;
+    }
+
+    @Override
+    public void devolver() {
+        this.entregado = false;
+    }
+
+	@Override
+	public boolean isEntregado() {
+        return this.entregado;
+    }
 }
 

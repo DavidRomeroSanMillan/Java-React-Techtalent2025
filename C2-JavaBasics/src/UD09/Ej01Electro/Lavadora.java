@@ -5,19 +5,21 @@ public class Lavadora extends Electrodoméstico implements Electrodomesticable {
 	protected final double CARGA = 5;
 
 	Lavadora() {
+		super();
 		this.carga = CARGA;
 
 	}
 
 	Lavadora(double precioBase, double carga) {
+		setColor(color);
+		setConsumo(consumo);
+		this.peso = PESO;
+		this.precioBase = precioBase;
 		this.carga = carga;
 	}
 
 	Lavadora(double precioBase, String color, String consumo, double peso, double carga) {
-		this.precioBase = precioBase;
-		setColor(color);
-		setConsumo(consumo);
-		this.peso = peso;
+		super(precioBase, color, consumo, peso);
 		this.carga = carga;
 
 	}

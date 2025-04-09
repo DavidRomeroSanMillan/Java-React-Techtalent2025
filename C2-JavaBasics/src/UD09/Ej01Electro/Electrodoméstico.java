@@ -62,13 +62,13 @@ public abstract class Electrodoméstico implements Electrodomesticable{
 		if (peso > 80) {
 			precioBase +=100;
 
-		} else if (peso > 50) {
+		} else if (peso >= 50) {
 			precioBase +=80;
 
-		} else if (peso > 20) {
+		} else if (peso >= 20) {
 			precioBase +=50;
 			
-		} else if (peso <= 19) {
+		} else if (peso < 20) {
 			precioBase +=10;
 		}
 

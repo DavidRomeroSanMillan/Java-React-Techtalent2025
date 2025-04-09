@@ -71,14 +71,6 @@ public class Videojuego implements Entregable{
 		this.empresa = empresa;
 	}
 	
-	public boolean entregar(boolean entregado) {
-		return false;
-	}
-
-	public boolean devolver(boolean entregado) {
-		return true;
-	}
-	
 	public String isEntregado(boolean entregado) {
 		String estadoEntrega="";
 		if(entregado) {
@@ -90,19 +82,30 @@ public class Videojuego implements Entregable{
 	}
 
 	
-	public String compareTo(Object a) {
-	if (a instanceof Videojuego) {
-		Videojuego otroVideojuego = (Videojuego)a;
-		if(this.horasEstimadas > otroVideojuego.getHorasEstimadas()) {
-			return "El videojuego "+this.titulo+" tiene más horas de juego estimadas que "+otroVideojuego.getTitulo();
-		}else if (this.horasEstimadas < otroVideojuego.getHorasEstimadas()) {
-			return "El videojuego "+this.titulo+" tiene menos horas de juego estimadas que "+otroVideojuego.getTitulo();
-		}else {
-			return "El videojuego "+this.titulo+" tiene el mismo número de horas de juego estimadas que "+otroVideojuego.getTitulo();
-		}
-	}else {
-		return "El objeto no es un videojuego.";
-	}
-	
+	@Override
+    public void entregar() {
+        this.entregado = true;
+    }
+
+    @Override
+    public void devolver() {
+        this.entregado = false;
+    }
+
+    @Override
+    public boolean isEntregado() {
+        return this.entregado;
+    }
+
+    @Override
+    public int compareTo(Object a) {
+        if (a instanceof Videojuego) {
+            Videojuego otroVideojuego = (Videojuego) a;
+            return Double.compare(this.horasEstimadas, otroVideojuego.getHorasEstimadas());
+        }
+        return 0;
+    }
+
+   
 }
-}
+

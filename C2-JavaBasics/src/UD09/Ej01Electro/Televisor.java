@@ -15,6 +15,8 @@ public class Televisor extends Electrodoméstico implements Electrodomesticable 
 
 	Televisor(double precioBase, double peso) {
 		super(precioBase, peso);
+		this.color=COLOR;
+		this.consumo=CONSUMO;
 		this.resolucion = RESOLUCION;
 		this.tdt = TDT;
 	}
