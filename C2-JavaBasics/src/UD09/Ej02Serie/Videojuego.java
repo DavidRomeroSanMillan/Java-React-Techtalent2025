@@ -22,8 +22,8 @@ public class Videojuego implements Entregable{
 		this.genero=genero;
 		this.empresa=empresa;
 	}
-	
-	public String toString(String titulo, double horasEstimadas, boolean entregado, String genero, String empresa) {
+	@Override
+	public String toString() {
 		String entregaSiNo = "";
 		if (entregado) {
 			entregaSiNo = "está entregada";
@@ -32,8 +32,8 @@ public class Videojuego implements Entregable{
 			entregaSiNo = "no está entregada";
 		}
 		
-		String informe = "El título de la serie es" + titulo + ", tiene " + horasEstimadas 
-				+ " temporadas, "+entregaSiNo+", es de género de "+genero+" y su autor/a es "+empresa+".";
+		String informe = titulo + ", tiene " + horasEstimadas 
+				+ " horas de juego estimadas, "+entregaSiNo+", es de género de "+genero+" y la compañía que lo ha hecho es "+empresa+".";
 		return informe;
 
 	}

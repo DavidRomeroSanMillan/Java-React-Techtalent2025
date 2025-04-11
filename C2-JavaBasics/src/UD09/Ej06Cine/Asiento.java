@@ -1,33 +1,28 @@
 package UD09.Ej06Cine;
 
+//Representa un asiento en la sala de cine
 public class Asiento {
-    private String identifier;
-    private boolean isTaken;
-    private Espectador espectador;
+ private String identifier; // Identificador único del asiento (por ejemplo, "8A", "7B")
+ private boolean isTaken;   // Indica si el asiento está ocupado (true) o libre (false)
 
-    public Asiento(String identifier) {
-        this.identifier = identifier;
-        this.isTaken = false;
-        this.espectador = null;
-    }
+ // Constructor: Inicializa el asiento con su identificador y lo marca como libre por defecto
+ public Asiento(String identifier) {
+     this.identifier = identifier;
+     this.isTaken = false; // El asiento está libre al ser creado
+ }
 
-    public String getIdentifier() {
-        return identifier;
-    }
+ // Devuelve el identificador único del asiento
+ public String getIdentifier() {
+     return identifier;
+ }
 
-    public boolean isTaken() {
-        return isTaken;
-    }
+ // Retorna si el asiento está ocupado o libre
+ public boolean isTaken() {
+     return isTaken;
+ }
 
-    public void setTaken(boolean isTaken) {
-        this.isTaken = isTaken;
-    }
-
-    public Espectador getEspectador() {
-        return espectador;
-    }
-
-    public void setEspectador(Espectador espectador) {
-        this.espectador = espectador;
-    }
+ // Permite marcar el asiento como ocupado o libre
+ public void setTaken(boolean isTaken) {
+     this.isTaken = isTaken;
+ }
 }

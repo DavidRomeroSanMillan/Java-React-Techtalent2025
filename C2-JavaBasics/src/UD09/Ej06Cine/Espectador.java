@@ -1,42 +1,47 @@
 
 package UD09.Ej06Cine;
 
+
+//Representa a los espectadores que asisten al cine
 public class Espectador {
-    private String name;
-    private int age;
-    private double moneyAvailable;
+ private String nombre;         // Nombre del espectador
+ private int edad;              // Edad del espectador
+ private double dineroDisponible; // Dinero que el espectador tiene disponible
 
-    public Espectador(String name, int age, double moneyAvailable) {
-        this.name = name;
-        this.age = age;
-        this.moneyAvailable = moneyAvailable;
-    }
+ // Constructor: Inicializa los atributos del espectador
+ public Espectador(String nombre, int edad, double dineroDisponible) {
+     this.nombre = nombre;
+     this.edad = edad;
+     this.dineroDisponible = dineroDisponible;
+ }
 
-    public String getName() {
-        return name;
-    }
+ // Devuelve el nombre del espectador
+ public String getNombre() {
+     return nombre;
+ }
 
-    public int getAge() {
-        return age;
-    }
+ // Devuelve la edad del espectador
+ public int getEdad() {
+     return edad;
+ }
 
-    public double getMoneyAvailable() {
-        return moneyAvailable;
-    }
+ // Devuelve el dinero disponible del espectador
+ public double getDineroDisponible() {
+     return dineroDisponible;
+ }
 
-    public void setName(String name) {
-        this.name = name;
-    }
+ // Permite cambiar el nombre del espectador
+ public void setNombre(String nombre) {
+     this.nombre = nombre;
+ }
 
-    public void setAge(int age) {
-        this.age = age;
-    }
+ // Permite actualizar la edad del espectador
+ public void setEdad(int edad) {
+     this.edad = edad;
+ }
 
-    public void setMoneyAvailable(double moneyAvailable) {
-        this.moneyAvailable = moneyAvailable;
-    }
-
-    public boolean canAfford(double price) {
-        return this.moneyAvailable >= price;
-    }
+ // Permite modificar el dinero disponible del espectador
+ public void setDineroDisponible(double dineroDisponible) {
+     this.dineroDisponible = dineroDisponible;
+ }
 }

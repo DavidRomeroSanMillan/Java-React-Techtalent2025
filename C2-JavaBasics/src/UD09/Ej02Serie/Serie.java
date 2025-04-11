@@ -24,8 +24,8 @@ public class Serie implements Entregable{
 		this.genero = genero;
 		this.creador = creador;
 	}
-
-	public String toString(String titulo, int numTemp, boolean entregado, String genero, String creador) {
+	@Override
+	public String toString() {
 		String entregaSiNo = "";
 		if (entregado) {
 			entregaSiNo = "está entregada";
@@ -34,7 +34,7 @@ public class Serie implements Entregable{
 			entregaSiNo = "no está entregada";
 		}
 		
-		String informe = "El título de la serie es" + titulo + ", tiene " + numTemp 
+		String informe = titulo + ", tiene " + numTemp 
 				+ " temporadas, "+entregaSiNo+", es de género de "+genero+" y su autor/a es "+creador+".";
 		return informe;
 
