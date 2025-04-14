@@ -5,7 +5,6 @@ import java.util.Random;
 
 public class Prueba {
     public static void main(String[] args) {
-        // Lista de 10 películas
         Pelicula[] peliculas = {
             new Pelicula("Interstellar", 169, 10, "Christopher Nolan"),
             new Pelicula("Parasite", 132, 16, "Bong Joon-ho"),
@@ -19,26 +18,23 @@ public class Prueba {
             new Pelicula("Star Wars: The Empire Strikes Back", 124, 10, "Irvin Kershner")
         };
 
-        // Seleccionar una película aleatoria
         Random random = new Random();
         Pelicula peliculaSeleccionada = peliculas[random.nextInt(peliculas.length)];
 
-        // Crear el cine con la película seleccionada
         Cine cine = new Cine(peliculaSeleccionada);
 
-        // Mostrar la película seleccionada
         System.out.println("Película actual:");
         System.out.println(cine.getPelicula());
+        System.out.println(String.format("%.2f", cine.getPrecio())+"€");
         System.out.println();
 
-        // Generar un número aleatorio de espectadores (entre 10 y 50)
-        int numEspectadores = 10 + random.nextInt(30); // Genera un número entre 10 y 50
+        int numEspectadores = 10 + random.nextInt(30); 
 
         // Crear espectadores aleatorios y sentarlos
         for (int i = 0; i < numEspectadores; i++) {
-            String nombre = "Espectador" + (i + 1); // Nombre del espectador
-            int edad = random.nextInt(120);         // Edad aleatoria entre 0 y 59
-            double dinero = random.nextDouble() * 20; // Dinero aleatorio entre 0 y 20
+            String nombre = "Espectador" + (i + 1); 
+            int edad = random.nextInt(120);         
+            double dinero = random.nextDouble() * 20; 
 
             // Crear un espectador con los datos aleatorios
             Espectador espectador = new Espectador(nombre, edad, dinero);

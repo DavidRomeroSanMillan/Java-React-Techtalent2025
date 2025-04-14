@@ -15,7 +15,7 @@ Libro(String titulo, String isbn10, String autor, int numPg){
 
 @Override
 public String toString() {
-	String informe = "El libro " + titulo + " con ISBN-10 " + isbn10 + "creado por el/la autor/a "
+	String informe = "El libro " + titulo + " con ISBN-10 " + isbn10 + ", creado por el/la autor/a "
 						+ autor + " tiene " + numPg + " páginas.";
 	return informe;
 	
