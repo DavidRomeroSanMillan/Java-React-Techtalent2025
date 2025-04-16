@@ -6,6 +6,9 @@ public class Raices {
 	private double c = 0;
 
 	Raices(double a, double b, double c) {
+		if (a == 0) {
+			throw new IllegalArgumentException("El valor de 'a' no puede ser 0");
+		}
 		this.a = a;
 		this.b = b;
 		this.c = c;

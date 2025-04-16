@@ -1,21 +1,44 @@
 package UD09.Ej05Aula;
 
-public class Profesor extends Persona{
-private String materia = "";
+import java.util.Random;
 
+public class Profesor extends Persona {
+	protected String materia = "";
+	String[] materias = { "matemáticas", "filosofía", "física" };
+	protected boolean ausencia = false;
+	Profesor() {
+		super();
+		this.edad = edadRandom();
+		this.materia = getMateriaRandom();
+		this.ausencia = Math.random() < 0.2;
+	}
 
-Profesor(String nombre, int edad, String sexo, String materia){
-	super(nombre, edad, sexo);
-	this.materia=materia;
-}
+	Profesor(String nombre, int edad, String sexo, String materia) {
+		super(nombre, edad, sexo);
+		this.materia = materia;
+	}
 
+	public boolean getAusencia() {
+		return ausencia;
 
-public String getMateria() {
-	return materia;
-}
+	}
 
+	public String getMateriaRandom() {
+		Random materiaRandom = new Random();
+		int index = materiaRandom.nextInt(materias.length);
+		return materias[index];
+	}
 
-public void setMateria(String materia) {
-	this.materia = materia;
-}
+	public int edadRandom() {
+		edad = (int) Math.random() * 30 + 30;
+		return edad;
+	}
+
+	public String getMateria() {
+		return materia;
+	}
+
+	public void setMateria(String materia) {
+		this.materia = materia;
+	}
 }
