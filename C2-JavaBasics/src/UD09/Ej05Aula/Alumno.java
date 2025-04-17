@@ -5,7 +5,6 @@ import java.util.Random;
 public class Alumno extends Persona {
 
 	protected int nota = 0;
-	protected boolean ausencia = false;
 
 	Alumno() {
 		super();

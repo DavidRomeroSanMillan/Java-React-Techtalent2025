@@ -33,7 +33,7 @@ public class Videojuego implements Entregable{
 		}
 		
 		String informe = titulo + ", tiene " + horasEstimadas 
-				+ " horas de juego estimadas, "+entregaSiNo+", es de género de "+genero+" y la compañía que lo ha hecho es "+empresa+".";
+				+ " horas de juego estimadas, "+entregaSiNo+", \nes de género de "+genero+" y la compañía que lo ha hecho es "+empresa+".";
 		return informe;
 
 	}

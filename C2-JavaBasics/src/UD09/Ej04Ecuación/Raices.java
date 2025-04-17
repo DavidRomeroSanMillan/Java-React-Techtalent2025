@@ -44,22 +44,15 @@ public class Raices {
 
 	private void obtenerRaices() {
 		double discriminante = getDiscriminante();
-		if (tieneRaices()) {
-			double calculoMenos = (-this.b - Math.sqrt(discriminante)) / (2 * this.a);
-			double calculoMas = (-this.b + Math.sqrt(discriminante)) / (2 * this.a);
-			System.out.println("Las posibles soluciones son: " + calculoMenos + " y " + calculoMas + ".");
-		} else {
-			System.out.println("No hay dos soluciones posibles.");
-		}
+		double calculoMenos = (-this.b - Math.sqrt(discriminante)) / (2 * this.a);
+		double calculoMas = (-this.b + Math.sqrt(discriminante)) / (2 * this.a);
+		System.out.println("Las posibles soluciones son: " + calculoMenos + " y " + calculoMas + ".");
 	}
 
 	private void obtenerRaiz() {
-		if (tieneRaiz()) {
-			double unicaSolucion = -this.b / (2 * this.a);
-			System.out.println("La única solución es: " + unicaSolucion + ".");
-		} else {
-			System.out.println("No existe una solución.");
-		}
+
+		double unicaSolucion = -this.b / (2 * this.a);
+		System.out.println("La única solución es: " + unicaSolucion + ".");
 	}
 
 	public double getA() {

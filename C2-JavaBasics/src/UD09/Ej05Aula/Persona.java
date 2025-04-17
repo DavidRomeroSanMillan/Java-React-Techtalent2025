@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
 
-public class Persona {
+public abstract class Persona {
 	protected String nombre = "";
 	protected int edad = 0;
 	protected String sexo = "";
@@ -13,6 +13,8 @@ public class Persona {
 	protected String[] listaApellidos = { "Polo", "Vázquez", "Johnson", "Paniagua", "Botero", "Raskolnikov", "Mayor" , "Líbero", "Zurrieta", "Pozuelo"};
 	protected String[] listaSexo = { "F", "M" };
     protected Map<String, String> nombresConSexo = new HashMap<>();
+	protected boolean ausencia = false;
+
 
 	Persona() {
 		initializeNombresConSexo();

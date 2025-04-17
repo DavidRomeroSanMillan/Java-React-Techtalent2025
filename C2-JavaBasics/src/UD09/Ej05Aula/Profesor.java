@@ -5,7 +5,6 @@ import java.util.Random;
 public class Profesor extends Persona {
 	protected String materia = "";
 	String[] materias = { "matemáticas", "filosofía", "física" };
-	protected boolean ausencia = false;
 	Profesor() {
 		super();
 		this.edad = edadRandom();
