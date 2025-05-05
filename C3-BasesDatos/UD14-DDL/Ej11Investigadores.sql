@@ -30,6 +30,7 @@ CREATE TABLE reservas(
     num_serie CHAR(4),
     comienzo DATETIME,
     fin DATETIME,
+    CONSTRAINT fecha_crono CHECK (comienzo < fin),
     PRIMARY KEY (dni, num_serie),
     FOREIGN KEY (dni) REFERENCES investigadores(dni)
     ON DELETE NO ACTION
