@@ -1,0 +1,68 @@
+CREATE TABLE clientes(
+    id_cliente INT NOT NULL AUTO_INCREMENT,
+    dni CHAR(9),
+	correo VARCHAR(100),
+    nombre VARCHAR(100),
+    PRIMARY KEY (id_cliente));
+
+CREATE TABLE proveedores(
+    id_proveedor INT NOT NULL AUTO_INCREMENT,
+    nif_dni CHAR(9),
+    nombre VARCHAR(100),
+    PRIMARY KEY (id_proveedor));
+
+CREATE TABLE productos(
+    num_serie INT,
+    nombre VARCHAR(100),
+    inventario INT,
+    PRIMARY KEY (num_serie));
+
+CREATE TABLE ventas_compras(
+    num_pedido INT NOT NULL,
+    PRIMARY KEY (num_pedido));
+    
+CREATE TABLE se_compone(
+    num_pedido INT, 
+    num_serie INT,
+    cantidad INT,
+    PRIMARY KEY(num_pedido, num_serie),
+    FOREIGN KEY (num_pedido) REFERENCES ventas_compras(num_pedido),
+    FOREIGN KEY (num_serie) REFERENCES productos(num_serie));
+
+CREATE TABLE facturas_venta(
+    num_factura INT,
+    fecha DATE,
+    cliente INT,
+    venta INT,
+    PRIMARY KEY (num_factura),
+    FOREIGN KEY (cliente) REFERENCES clientes(id_cliente),
+    FOREIGN KEY (venta) REFERENCES ventas_compras(num_pedido));
+
+CREATE TABLE facturas_compra(
+    num_factura INT,
+    fecha DATE,
+    proveedor INT,
+    compra INT,
+    FOREIGN KEY (proveedor) REFERENCES proveedores(id_proveedor),
+    FOREIGN KEY (compra) REFERENCES ventas_compras(num_pedido),
+    PRIMARY KEY (num_factura));
+
+INSERT INTO clientes(dni, correo, nombre) VALUES
+('34128865P', 'correo@mail.com', 'Jaime'),
+('99327764K', 'prueba2@mail.com', 'María'),
+('42255541L', 'personareal@invent.com', 'Carlos');
+
+INSERT INTO proveedores(nif_dni, nombre) VALUES
+('S77490234', 'Verduras Paola, S.A.'),
+('R11302242', 'Productos lácteos I.P.A.'),
+('J50027731', 'Harinas Manolo, S.A.');
+
+INSERT INTO productos(num_serie, nombre, inventario) VALUES
+(493002, 'Calabaza', 65),
+(322001, 'Mantequilla', 100),
+(009416, 'Harina de centeno', 32);
+
+INSERT INTO ventas_compras (num_pedido) VALUES
+(1), (2), (3), (4), (5);
+
+INSERT INTO

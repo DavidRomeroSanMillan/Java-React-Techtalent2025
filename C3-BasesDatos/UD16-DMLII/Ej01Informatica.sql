@@ -32,6 +32,42 @@ SELECT COUNT(id_articulo) FROM articulos WHERE precio >= 180;
 --Ej 1.9. Obtener nombre y precio de artículos cuyo precio sea >=180 y ordenar DESC por precio, ASC por nombre.
 SELECT nombre, precio FROM articulos WHERE precio >= 180 ORDER BY precio DESC nombre ASC;
 --Ej 1.10. Obtener listado de artículos, incluyendo nombre, precio y datos del fabricante.
+SELECT a.nombre AS 'Articulo', precio AS 'Precio', f.id_fabricante AS 'ID Fabricante', f.nombre AS 'Fabricante' FROM articulos a
+INNER JOIN fabricantes f
+ON a.fabricante = f.id_fabricante;
+--Ej 1.11. Obtener un listado de artículos, incluyendo el nombre del artículo, 
+--su precio y el nombre del fabricante.
 SELECT a.nombre AS 'Articulo', precio AS 'Precio', f.nombre AS 'Fabricante' FROM articulos a
 INNER JOIN fabricantes f
 ON a.fabricante = f.id_fabricante;
+--Ej 1.12. Obtener el precio medio de los productos de cada fabricante, mostrando solo los códigos de fabricante.
+SELECT AVG(precio) AS 'Precio medio', f.id_fabricante AS 'Fabricante' FROM articulos a
+INNER JOIN fabricantes f
+ON a.fabricante = f.id_fabricante
+GROUP BY fabricante;
+--Ej 1.13. Obtener el precio medio de los productos de cada fabricante, mostrando el nombre del fabricante.
+SELECT AVG(precio) AS 'Precio medio', f.nombre AS 'Fabricante' FROM articulos a
+INNER JOIN fabricantes f
+ON a.fabricante = f.id_fabricante
+GROUP BY fabricante;
+--Ej 1.14. Obtener los nombres de los fabricantes que ofrezcan productos cuyo precio medio sea mayor o igual a 150.
+SELECT f.nombre AS 'Fabricante', AVG(precio) AS 'Precio medio' FROM articulos a 
+INNER JOIN fabricantes f
+ON a.fabricante = f.id_fabricante
+WHERE precio >= 150
+GROUP BY fabricante;
+--Ej 1.15. Obtener el nombre y precio del artículo más barato.
+SELECT nombre AS 'Artículo más barato', precio AS 'Precio ' FROM articulos 
+WHERE precio = (SELECT MIN(precio) FROM articulos);
+--Ej 1.16. Obtener una lista con el nombre y precio de los artículos más caros
+--de cada proveedor (incluyendo el nombre del proveedor).
+SELECT nombre AS 'Artículo más caro', MAX(precio) AS 'Precio' FROM articulos
+GROUP BY fabricante;
+--Ej 1.17. Añadir un nuevo producto: Altavoces de 70€ del fabricante 2.
+INSERT INTO articulos (nombre, precio, fabricante) VALUES ('Altavoces', 70, 2);
+--Ej 1.18. Cambiar el nombre del producto 8 a 'Impresora Laser'.
+UPDATE articulos SET nombre='Impresora Laser'
+WHERE id_articulo=8;
+--Ej 1.19. Aplicar un descuento del 10% a todos los productos.
+UPDATE articulos SET precio=precio*0.9;
+--Ej 1.20. Aplicar un descuento de 10€ a todos los productos cuyo precio sea mayor o igual a 120.
