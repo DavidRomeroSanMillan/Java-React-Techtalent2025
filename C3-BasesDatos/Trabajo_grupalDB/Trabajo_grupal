@@ -15,10 +15,14 @@ CREATE TABLE productos(
     num_serie INT,
     nombre VARCHAR(100),
     inventario INT,
+    precio DOUBLE,
     PRIMARY KEY (num_serie));
 
 CREATE TABLE ventas_compras(
     num_pedido INT NOT NULL,
+    importe_total DOUBLE,
+    impuesto1 DOUBLE,
+    impuesto2 DOUBLE,
     PRIMARY KEY (num_pedido));
     
 CREATE TABLE se_compone(
@@ -34,6 +38,8 @@ CREATE TABLE facturas_venta(
     fecha DATE,
     cliente INT,
     venta INT,
+    impuesto DOUBLE,
+    importe DOUBLE,
     PRIMARY KEY (num_factura),
     FOREIGN KEY (cliente) REFERENCES clientes(id_cliente),
     FOREIGN KEY (venta) REFERENCES ventas_compras(num_pedido));
@@ -43,6 +49,8 @@ CREATE TABLE facturas_compra(
     fecha DATE,
     proveedor INT,
     compra INT,
+    impuesto DOUBLE,
+    importe DOUBLE,
     FOREIGN KEY (proveedor) REFERENCES proveedores(id_proveedor),
     FOREIGN KEY (compra) REFERENCES ventas_compras(num_pedido),
     PRIMARY KEY (num_factura));
@@ -65,4 +73,31 @@ INSERT INTO productos(num_serie, nombre, inventario) VALUES
 INSERT INTO ventas_compras (num_pedido) VALUES
 (1), (2), (3), (4), (5);
 
-INSERT INTO
+INSERT INTO facturas_compra (num_factura, fecha, proveedor, compra, impuesto, importe) VALUES
+(3, 2024-01-02, 1, 1, 4, 5.85),
+(2, 2024-07-05, 2, 2, 21, 1.98),
+(1, 2024-07-21, 3, 3, 21, 6.70);
+
+INSERT INTO facturas_venta (num_factura, fecha, cliente, venta, impuesto, importe) VALUES
+(1, 2025-02-03, 1, 4, 21, 25),
+(2, 2025-03-20, 2, 5, 21, 50.25);
+
+INSERT INTO se_compone (num_pedido, num_serie, cantidad) VALUES
+(1, 322001, 1),
+(1, 493002, 1),
+(2, 9416, 2),
+(3, 322001, 2),
+(4, 493002, 10),
+(5, 322001, 15);
+
+UPDATE facturas_compra SET impuesto=4 WHERE num_factura=2;
+UPDATE productos SET inventario=-15 WHERE num_serie=322001;
+UPDATE clientes SET correo=correofalso@gmail.com WHERE id_cliente=1;
+
+DELETE FROM clientes WHERE id_cliente=3;
+DELETE FROM productos WHERE num_serie=1234;
+DELETE FROM proveedores WHERE id_proveedor=4;
+
+SELECT nombre AS 'Nombre' FROM proveedores WHERE id_proveedor=2;
+SELECT AVG(precio) AS 'Precio medio productos' FROM productos;
+SELECT COUNT(num_serie) AS 'Número de productos' FROM productos WHERE inventario > 50;
