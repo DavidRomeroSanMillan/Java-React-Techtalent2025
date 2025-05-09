@@ -1,13 +1,15 @@
+CREATE DATABASE proyecto_grupaldb
+
 CREATE TABLE clientes(
     id_cliente INT NOT NULL AUTO_INCREMENT,
-    dni CHAR(9),
+    dni CHAR(9) UNIQUE,
 	correo VARCHAR(100),
     nombre VARCHAR(100),
     PRIMARY KEY (id_cliente));
 
 CREATE TABLE proveedores(
     id_proveedor INT NOT NULL AUTO_INCREMENT,
-    nif_dni CHAR(9),
+    nif_dni CHAR(9) UNIQUE,
     nombre VARCHAR(100),
     PRIMARY KEY (id_proveedor));
 
@@ -101,3 +103,7 @@ DELETE FROM proveedores WHERE id_proveedor=4;
 SELECT nombre AS 'Nombre' FROM proveedores WHERE id_proveedor=2;
 SELECT AVG(precio) AS 'Precio medio productos' FROM productos;
 SELECT COUNT(num_serie) AS 'Número de productos' FROM productos WHERE inventario > 50;
+
+SELECT nombre AS 'No han hecho pedidos' FROM proveedores 
+LEFT JOIN facturas_compra ON id_proveedor=proveedor 
+WHERE proveedor IS NULL;
