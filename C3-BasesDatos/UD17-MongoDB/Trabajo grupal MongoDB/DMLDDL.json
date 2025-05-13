@@ -1,0 +1,33 @@
+db.clientes.updateOne(
+  { _id: 1 },
+  { $set: { email: "juan.actualizado@example.com" } }
+)
+db.productos.updateOne(
+  { _id: 102 },
+  { $inc: { stock: 10 } }
+)
+db.facturas_venta.updateOne(
+  { _id: 2002 },
+  { $set: { total: 79.99 } }
+)
+
+
+db.clientes.deleteOne(
+  { _id: 3 }
+);s
+db.productos.deleteOne(
+  { stock: { $lte: 0 } }
+);
+db.facturas_compra.deleteOne(
+  { fecha: "2025-05-01" }
+);
+
+db.productos.find(
+  { precio: { $gt: 50 } }
+);
+db.facturas_venta.find(
+  { id_cliente: 1 }
+);
+db.clientes.find(
+  { direccion: { $regex: "Ciudad B"} }
+);
