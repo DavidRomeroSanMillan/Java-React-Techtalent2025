@@ -93,4 +93,8 @@ WHERE departamento = 77;
 DELETE * FROM empleados WHERE departamento = 14;
 
 -- 2.19. Despedir a todos los empleados de los departamentos con presupuesto > 60000.
-    
+DELETE FROM empleados WHERE departamento IN 
+(SELECT id_departamento FROM departamentos WHERE presupuesto > 60000);
+
+-- 2.20 Despedir a todos los empleados.
+DELETE FROM empleados;
