@@ -14,7 +14,7 @@ db.facturas_venta.updateOne(
 
 db.clientes.deleteOne(
   { _id: 3 }
-);s
+);
 db.productos.deleteOne(
   { stock: { $lte: 0 } }
 );
