@@ -12,7 +12,6 @@ public class CalculadoraApp extends Calculadora {
 
 
 	public static void main(String[] args) {
-		Calculadora();
 	}
 
 }
