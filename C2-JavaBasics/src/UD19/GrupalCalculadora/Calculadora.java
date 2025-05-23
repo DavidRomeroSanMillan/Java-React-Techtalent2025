@@ -13,6 +13,9 @@ import javax.swing.JButton;
 import java.awt.Color;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.script.ScriptEngineManager;
+import javax.script.ScriptEngine;
+import javax.script.ScriptException;
 
 public class Calculadora extends JFrame {
 	private JPanel contentPane;
@@ -35,6 +38,8 @@ public class Calculadora extends JFrame {
 	private JButton btnDecimal;
 	private JButton btnRaiz;
 	private JButton btnElevacion;
+	private JButton btnBorrar;
+	private JButton btnPor;
 
 	double numero1;
 	double numero2;
@@ -51,33 +56,34 @@ public class Calculadora extends JFrame {
 					e.printStackTrace();
 				}
 			}
+
 		});
 	}
 
 	public Calculadora() {
 		setTitle("Calculadora");
-		setBounds(100, 100, 261, 395);
+		setBounds(100, 100, 261, 415);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setVisible(true);
 		contentPane = new JPanel();
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+		contentPane.setBackground(new Color(48, 51, 74));
 
 		textoPantalla = new JTextField();
-		textoPantalla.setBounds(10, 11, 230, 40);
+		textoPantalla.setBounds(10, 11, 230, 42);
 		contentPane.add(textoPantalla);
 
 		btnSuma = new JButton("+");
 		btnSuma.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				numero1 = Double.parseDouble(textoPantalla.getText());
-				textoPantalla.setText("");
 				operacion = "+";
-			}
+				textoPantalla.setText("");}
 		});
-		btnSuma.setBounds(190, 120, 50, 48);
+		btnSuma.setBounds(190, 132, 50, 48);
 		btnSuma.setFont(new Font("Arial", Font.BOLD, 18));
-		btnSuma.setBackground(new Color(255, 255, 255));
+		btnSuma.setBackground(new Color(252, 81, 81));
 		contentPane.add(btnSuma);
 
 		btn3 = new JButton("3");
@@ -88,9 +94,7 @@ public class Calculadora extends JFrame {
 			}
 		});
 		btn3.setFont(new Font("Arial", Font.BOLD, 18));
-		btn3.setBackground(new Color(255, 255, 255));
-		btn3.setBounds(130, 238, 50, 48);
-
+		btn3.setBackground(new Color(176, 173, 173));
 		contentPane.add(btn3);
 
 		btn2 = new JButton("2");
@@ -102,8 +106,8 @@ public class Calculadora extends JFrame {
 
 		});
 		btn2.setFont(new Font("Arial", Font.BOLD, 18));
-		btn2.setBackground(new Color(255, 255, 255));
-		btn2.setBounds(70, 238, 50, 48);
+		btn2.setBackground(new Color(226, 226, 226));
+		btn2.setBounds(70, 250, 50, 48);
 		contentPane.add(btn2);
 
 		btn1 = new JButton("1");
@@ -115,8 +119,8 @@ public class Calculadora extends JFrame {
 		});
 
 		btn1.setFont(new Font("Arial", Font.BOLD, 18));
-		btn1.setBackground(new Color(255, 255, 255));
-		btn1.setBounds(10, 238, 50, 48);
+		btn1.setBackground(new Color(226, 226, 226));
+		btn1.setBounds(10, 250, 50, 48);
 		contentPane.add(btn1);
 
 		btn9 = new JButton("9");
@@ -128,8 +132,8 @@ public class Calculadora extends JFrame {
 			}
 		});
 		btn9.setFont(new Font("Arial", Font.BOLD, 18));
-		btn9.setBackground(new Color(255, 255, 255));
-		btn9.setBounds(130, 120, 50, 48);
+		btn9.setBackground(new Color(226, 226, 226));
+		btn9.setBounds(130, 132, 50, 48);
 		contentPane.add(btn9);
 
 		btn7 = new JButton("7");
@@ -141,60 +145,65 @@ public class Calculadora extends JFrame {
 			}
 		});
 		btn7.setFont(new Font("Arial", Font.BOLD, 18));
-		btn7.setBackground(new Color(255, 255, 255));
-		btn7.setBounds(10, 120, 50, 48);
+		btn7.setBackground(new Color(226, 226, 226));
+		btn7.setBounds(10, 132, 50, 48);
 		contentPane.add(btn7);
 
 		btnResta = new JButton("-");
 		btnResta.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String IngreseNumero = textoPantalla.getText() + btnResta.getText();
-				textoPantalla.setText(IngreseNumero);
+				numero1 = Double.parseDouble(textoPantalla.getText());
+				operacion = "-";
+				textoPantalla.setText("");
+
 			}
 		});
 
 		btnResta.setFont(new Font("Arial", Font.BOLD, 18));
-		btnResta.setBackground(new Color(255, 255, 255));
-		btnResta.setBounds(190, 179, 50, 48);
+		btnResta.setBackground(new Color(252, 81, 81));
+		btnResta.setBounds(190, 191, 50, 48);
 		contentPane.add(btnResta);
 
 		btnMulti = new JButton("*");
 		btnMulti.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String IngreseNumero = textoPantalla.getText() + btnMulti.getText();
-				textoPantalla.setText(IngreseNumero);
+				numero1 = Double.parseDouble(textoPantalla.getText());
+				operacion = "*";
+				textoPantalla.setText("");
 			}
 		});
 
 		btnMulti.setFont(new Font("Arial", Font.BOLD, 18));
-		btnMulti.setBackground(new Color(255, 255, 255));
-		btnMulti.setBounds(190, 238, 50, 48);
+		btnMulti.setBackground(new Color(252, 81, 81));
+		btnMulti.setBounds(190, 250, 50, 48);
 		contentPane.add(btnMulti);
 
 		btnDiv = new JButton("/");
 		btnDiv.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String IngreseNumero = textoPantalla.getText() + btnDiv.getText();
-				textoPantalla.setText(IngreseNumero);
+				numero1 = Double.parseDouble(textoPantalla.getText());
+				operacion = "/";
+				textoPantalla.setText("");
 			}
 		});
 
 		btnDiv.setFont(new Font("Arial", Font.BOLD, 18));
-		btnDiv.setBackground(new Color(255, 255, 255));
-		btnDiv.setBounds(10, 297, 50, 48);
+		btnDiv.setBackground(new Color(252, 81, 81));
+		btnDiv.setBounds(10, 309, 50, 48);
 		contentPane.add(btnDiv);
 
 		btnIgual = new JButton("=");
 		btnIgual.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String IngreseNumero = textoPantalla.getText() + btnIgual.getText();
-				textoPantalla.setText(IngreseNumero);
+				double numero2 = Double.parseDouble(textoPantalla.getText());
+				double resultado = Operaciones.calcular(numero1, numero2, operacion);
+				textoPantalla.setText(String.valueOf(resultado));
 			}
 		});
 
 		btnIgual.setFont(new Font("Arial", Font.BOLD, 18));
-		btnIgual.setBackground(new Color(255, 255, 255));
-		btnIgual.setBounds(190, 297, 50, 48);
+		btnIgual.setBackground(new Color(249, 207, 0));
+		btnIgual.setBounds(190, 308, 50, 48);
 		contentPane.add(btnIgual);
 
 		btnDecimal = new JButton(".");
@@ -206,34 +215,36 @@ public class Calculadora extends JFrame {
 		});
 
 		btnDecimal.setFont(new Font("Arial", Font.BOLD, 18));
-		btnDecimal.setBackground(new Color(255, 255, 255));
-		btnDecimal.setBounds(130, 295, 50, 48);
+		btnDecimal.setBackground(new Color(82, 245, 120));
+		btnDecimal.setBounds(130, 307, 50, 48);
 		contentPane.add(btnDecimal);
 
 		btnRaiz = new JButton("√");
 		btnRaiz.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String IngreseNumero = textoPantalla.getText() + btnRaiz.getText();
-				textoPantalla.setText(IngreseNumero);
+				numero1 = Double.parseDouble(textoPantalla.getText());
+				operacion = "sqrt";
+				textoPantalla.setText("");
 			}
 		});
 
 		btnRaiz.setFont(new Font("Arial", Font.BOLD, 18));
-		btnRaiz.setBackground(new Color(255, 255, 255));
-		btnRaiz.setBounds(10, 50, 50, 48);
+		btnRaiz.setBackground(new Color(82, 245, 120));
+		btnRaiz.setBounds(10, 72, 50, 48);
 		contentPane.add(btnRaiz);
 
 		btnElevacion = new JButton("^");
 		btnElevacion.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String IngreseNumero = textoPantalla.getText() + btnElevacion.getText();
-				textoPantalla.setText(IngreseNumero);
+				numero1 = Double.parseDouble(textoPantalla.getText());
+				operacion = "^";
+				textoPantalla.setText("");
 			}
 		});
 
 		btnElevacion.setFont(new Font("Arial", Font.BOLD, 18));
-		btnElevacion.setBackground(new Color(255, 255, 255));
-		btnElevacion.setBounds(50, 50, 50, 48);
+		btnElevacion.setBackground(new Color(82, 245, 120));
+		btnElevacion.setBounds(70, 72, 50, 48);
 		contentPane.add(btnElevacion);
 
 		btn6 = new JButton("6");
@@ -245,10 +256,101 @@ public class Calculadora extends JFrame {
 			}
 		});
 		btn6.setFont(new Font("Arial", Font.BOLD, 18));
-		btn6.setBackground(new Color(255, 255, 255));
-		btn6.setBounds(130, 179, 50, 48);
+		btn6.setBackground(new Color(226, 226, 226));
+		btn6.setBounds(130, 191, 50, 48);
 		contentPane.add(btn6);
 
+		btn8 = new JButton("8");
+		btn8.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+
+				String IngreseNumero = textoPantalla.getText() + btn8.getText();
+				textoPantalla.setText(IngreseNumero);
+			}
+		});
+		btn8.setFont(new Font("Arial", Font.BOLD, 18));
+		btn8.setBackground(new Color(226, 226, 226));
+		btn8.setBounds(70, 132, 50, 48);
+		contentPane.add(btn8);
+
+		btnCero = new JButton("0");
+		btnCero.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+
+				String IngreseNumero = textoPantalla.getText() + btnCero.getText();
+				textoPantalla.setText(IngreseNumero);
+			}
+		});
+		btnCero.setFont(new Font("Arial", Font.BOLD, 18));
+		btnCero.setBackground(new Color(226, 226, 226));
+		btnCero.setBounds(70, 308, 50, 48);
+		contentPane.add(btnCero);
+
+		btn3 = new JButton("3");
+		btn3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+
+				String IngreseNumero = textoPantalla.getText() + btn3.getText();
+				textoPantalla.setText(IngreseNumero);
+			}
+		});
+		btn3.setFont(new Font("Arial", Font.BOLD, 18));
+		btn3.setBackground(new Color(226, 226, 226));
+		btn3.setBounds(130, 250, 50, 48);
+		contentPane.add(btn3);
+
+		btn4 = new JButton("4");
+		btn4.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+
+				String IngreseNumero = textoPantalla.getText() + btn4.getText();
+				textoPantalla.setText(IngreseNumero);
+			}
+		});
+		btn4.setFont(new Font("Arial", Font.BOLD, 18));
+		btn4.setBackground(new Color(226, 226, 226));
+		btn4.setBounds(10, 191, 50, 48);
+		contentPane.add(btn4);
+
+		btn5 = new JButton("5");
+		btn5.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+
+				String IngreseNumero = textoPantalla.getText() + btn5.getText();
+				textoPantalla.setText(IngreseNumero);
+			}
+		});
+		btn5.setFont(new Font("Arial", Font.BOLD, 18));
+		btn5.setBackground(new Color(226, 226, 226));
+		btn5.setBounds(70, 191, 50, 48);
+		contentPane.add(btn5);
+
+		btnBorrar = new JButton("<");
+		btnBorrar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String texto = textoPantalla.getText();
+				if (!texto.isEmpty()) {
+					textoPantalla.setText(texto.substring(0, texto.length() - 1));
+				}
+			}
+		});
+		btnBorrar.setFont(new Font("Arial", Font.BOLD, 18));
+		btnBorrar.setBackground(new Color(72, 236, 236));
+		btnBorrar.setBounds(190, 72, 50, 50);
+		contentPane.add(btnBorrar);
+
+		btnPor = new JButton("%");
+		btnPor.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				numero1 = Double.parseDouble(textoPantalla.getText());
+				operacion = "%";
+				textoPantalla.setText("");
+			}
+		});
+		btnPor.setFont(new Font("Arial", Font.BOLD, 18));
+		btnPor.setBackground(new Color(82, 245, 120));
+		btnPor.setBounds(130, 72, 50, 50);
+		contentPane.add(btnPor);
 	}
 
 }
