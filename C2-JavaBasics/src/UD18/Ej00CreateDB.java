@@ -12,7 +12,7 @@ public class Ej00CreateDB {
 		String password = "";
 		String user = "root";
 
-		String sqlCreateDB = "CREATE DATABASE IF NOT EXISTS java_empleados";
+		String sqlCreateDB = "CREATE DATABASE IF NOT EXISTS java_directores";
 
 		try (Connection connection = DriverManager.getConnection(url, user, password);
 				Statement statement = connection.createStatement()) {
