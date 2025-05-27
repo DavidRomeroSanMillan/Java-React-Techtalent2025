@@ -84,7 +84,7 @@ public class Ej08App extends JFrame {
 					}
 					DecimalFormatSymbols symbols = new DecimalFormatSymbols();
 					symbols.setDecimalSeparator('.');
-					DecimalFormat df = new DecimalFormat("#.##",symbols);
+					DecimalFormat df = new DecimalFormat("#.##", symbols);
 					text2.setText(String.valueOf(df.format(cambio)));
 				} catch (NumberFormatException ex) {
 					JOptionPane.showMessageDialog(null, "Por favor, ingrese un número válido.", "Error de entrada",

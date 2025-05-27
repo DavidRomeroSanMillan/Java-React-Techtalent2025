@@ -44,7 +44,7 @@ public class Ej03App extends JFrame{
 	contentPane.setLayout(null);
 	contentPane.setBackground(new Color (45, 170, 120));
 	
-	etiqueta1 = new JLabel("Botón 1 se ha pulsado "+contadorBtn1+" veces");
+	etiqueta1 = new JLabel("Botón 1 se ha pulsado " + contadorBtn1 + " veces");
 	etiqueta1.setBounds(20, 20, 325, 100);
 	etiqueta1.setFont(new Font("Arial", Font.BOLD, 19));
 	contentPane.add(etiqueta1);
