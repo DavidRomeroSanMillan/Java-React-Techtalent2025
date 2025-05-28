@@ -31,7 +31,7 @@ public class Geometria {
 	}
 
 	// metodo area del triangulo
-	public int areatriangulo(int a, int b) {
+	public static int areatriangulo(int a, int b) {
 		return (a * b) / 2;
 	}
 
@@ -41,7 +41,7 @@ public class Geometria {
 	}
 
 	// metodo area del rectangulo
-	public int areapentagono(int p, int a) {
+	public static int areapentagono(int p, int a) {
 		return (p * a) / 2;
 	}
 
@@ -51,12 +51,12 @@ public class Geometria {
 	}
 
 	// metodo area del rectangulo
-	public int arearomboide(int b, int h) {
+	public static int arearomboide(int b, int h) {
 		return b * h;
 	}
 
 	// metodo area del rectangulo
-	public int areatrapecio(int B, int b, int h) {
+	public static int areatrapecio(int B, int b, int h) {
 		return ((B + b) / 2) * h;
 	}
 
