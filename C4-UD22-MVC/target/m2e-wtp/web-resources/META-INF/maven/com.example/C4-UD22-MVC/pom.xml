@@ -4,4 +4,11 @@
   <artifactId>C4-UD22-MVC</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <packaging>war</packaging>
+  <dependencies>
+     <dependency>
+       <groupId>mysql</groupId>
+       <artifactId>mysql-connector-java</artifactId>
+       <version>8.0.33</version> 
+   </dependency>
+  </dependencies>
 </project>
