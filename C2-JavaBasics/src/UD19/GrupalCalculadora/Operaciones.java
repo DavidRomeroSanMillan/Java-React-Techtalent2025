@@ -25,7 +25,7 @@ public class Operaciones {
         }
     }
 
-    public static double calcular(double num, String operador) {
+    public static double calcular(String operador, double num) {
         if ("sqrt".equals(operador)) {
             if (num < 0) {
                 throw new ArithmeticException("No se puede calcular la raíz cuadrada de un número negativo");

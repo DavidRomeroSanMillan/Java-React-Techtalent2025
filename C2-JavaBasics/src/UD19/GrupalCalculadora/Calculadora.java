@@ -16,6 +16,7 @@ import java.awt.event.ActionEvent;
 import javax.script.ScriptEngineManager;
 import javax.script.ScriptEngine;
 import javax.script.ScriptException;
+import java.util.List;
 
 public class Calculadora extends JFrame {
 	private JPanel contentPane;
@@ -40,6 +41,7 @@ public class Calculadora extends JFrame {
 	private JButton btnElevacion;
 	private JButton btnBorrar;
 	private JButton btnPor;
+	private JMenuBar menuBar;
 
 	double numero1;
 	double numero2;
@@ -72,14 +74,33 @@ public class Calculadora extends JFrame {
 
 		textoPantalla = new JTextField();
 		textoPantalla.setBounds(10, 11, 230, 42);
+		textoPantalla.setHorizontalAlignment(SwingConstants.RIGHT);
+		textoPantalla.setFont(new Font("Arial", Font.BOLD, 18));
 		contentPane.add(textoPantalla);
+
+		menuBar = new JMenuBar();
+		JMenu historial = new JMenu("Historial");
+		menuBar.add(historial);
+
+		JMenuItem verHistorial = new JMenuItem("Ver Historial");
+		verHistorial.addActionListener(new ActionListener() {
+		    public void actionPerformed(ActionEvent e) {
+		        CalculadoraDAO calculadoraDAO = new CalculadoraDAO();
+		        List<String> historial = calculadoraDAO.obtenerHistorial();
+		        HistorialDialog dialog = new HistorialDialog(Calculadora.this, historial);
+		        dialog.setVisible(true);
+		    }
+		});
+		historial.add(verHistorial);
+		setJMenuBar(menuBar);
 
 		btnSuma = new JButton("+");
 		btnSuma.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				numero1 = Double.parseDouble(textoPantalla.getText());
 				operacion = "+";
-				textoPantalla.setText("");}
+				textoPantalla.setText("");
+			}
 		});
 		btnSuma.setBounds(190, 132, 50, 48);
 		btnSuma.setFont(new Font("Arial", Font.BOLD, 18));
@@ -195,9 +216,20 @@ public class Calculadora extends JFrame {
 		btnIgual = new JButton("=");
 		btnIgual.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				double numero2 = Double.parseDouble(textoPantalla.getText());
-				double resultado = Operaciones.calcular(numero1, numero2, operacion);
+
+				if (operacion.equals("sqrt")) {
+					resultado = Operaciones.calcular(operacion, numero1);
+				} else {
+
+					double numero2 = Double.parseDouble(textoPantalla.getText());
+					resultado = Operaciones.calcular(numero1, numero2, operacion);
+				}
 				textoPantalla.setText(String.valueOf(resultado));
+
+				// Guardar el resultado en la base de datos
+				CalculadoraDAO calculadoraDAO = new CalculadoraDAO();
+				calculadoraDAO.guardarResultado(operacion, resultado);
+
 			}
 		});
 
@@ -225,6 +257,7 @@ public class Calculadora extends JFrame {
 				numero1 = Double.parseDouble(textoPantalla.getText());
 				operacion = "sqrt";
 				textoPantalla.setText("");
+
 			}
 		});
 
@@ -330,7 +363,7 @@ public class Calculadora extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				String texto = textoPantalla.getText();
 				if (!texto.isEmpty()) {
-					textoPantalla.setText(texto.substring(0, texto.length() - 1));
+					textoPantalla.setText("");
 				}
 			}
 		});
