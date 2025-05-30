@@ -22,23 +22,23 @@ public class CalculadoraDAO {
 		}
 	}
 
-    public List<String> obtenerHistorial() {
-        List<String> historial = new ArrayList<>();
-        String query = "SELECT operacion, resultado FROM resultados_calculadora";
+	public List<String> obtenerHistorial() {
+		List<String> historial = new ArrayList<>();
+		String query = "SELECT operacion, resultado FROM resultados_calculadora";
 
-        try (Connection conexion = ConexionDB.obtenerConexion();
-        		Statement stmt = conexion.createStatement();
-             ResultSet rs = stmt.executeQuery(query)) {
-            while (rs.next()) {
-                String operacion = rs.getString("operacion");
-                double resultado = rs.getDouble("resultado");
-                historial.add(operacion + " = " + resultado);
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+		try (Connection conexion = ConexionDB.obtenerConexion();
+				Statement stmt = conexion.createStatement();
+				ResultSet rs = stmt.executeQuery(query)) {
+			while (rs.next()) {
+				String operacion = rs.getString("operacion");
+				double resultado = rs.getDouble("resultado");
+				historial.add(operacion + " = " + resultado);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 
-        return historial;
+		return historial;
 
 	}
 }

@@ -1,8 +1,6 @@
 package UD19.GrupalCalculadora;
 
 import javax.swing.*;
-import javax.swing.border.EmptyBorder;
-import java.awt.*;
 import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -13,9 +11,7 @@ import javax.swing.JButton;
 import java.awt.Color;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import javax.script.ScriptEngineManager;
-import javax.script.ScriptEngine;
-import javax.script.ScriptException;
+
 import java.util.List;
 
 public class Calculadora extends JFrame {
@@ -64,7 +60,7 @@ public class Calculadora extends JFrame {
 
 	public Calculadora() {
 		setTitle("Calculadora");
-		setBounds(100, 100, 261, 415);
+		setBounds(100, 100, 261, 425);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setVisible(true);
 		contentPane = new JPanel();
@@ -84,12 +80,12 @@ public class Calculadora extends JFrame {
 
 		JMenuItem verHistorial = new JMenuItem("Ver Historial");
 		verHistorial.addActionListener(new ActionListener() {
-		    public void actionPerformed(ActionEvent e) {
-		        CalculadoraDAO calculadoraDAO = new CalculadoraDAO();
-		        List<String> historial = calculadoraDAO.obtenerHistorial();
-		        HistorialDialog dialog = new HistorialDialog(Calculadora.this, historial);
-		        dialog.setVisible(true);
-		    }
+			public void actionPerformed(ActionEvent e) {
+				CalculadoraDAO calculadoraDAO = new CalculadoraDAO();
+				List<String> historial = calculadoraDAO.obtenerHistorial();
+				HistorialDialog dialog = new HistorialDialog(Calculadora.this, historial);
+				dialog.setVisible(true);
+			}
 		});
 		historial.add(verHistorial);
 		setJMenuBar(menuBar);
