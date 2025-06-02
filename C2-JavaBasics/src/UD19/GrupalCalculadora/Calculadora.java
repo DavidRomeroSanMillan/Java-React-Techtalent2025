@@ -11,10 +11,12 @@ import javax.swing.JButton;
 import java.awt.Color;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import UD19.GrupalCalculadora.CalculadoraDAO;
 
 import java.util.List;
 
 public class Calculadora extends JFrame {
+	
 	private JPanel contentPane;
 	private JTextField textoPantalla;
 	private JButton btnSuma;
@@ -213,18 +215,23 @@ public class Calculadora extends JFrame {
 		btnIgual.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
-				if (operacion.equals("sqrt")) {
+				if (operacion.equals("√")) {
 					resultado = Operaciones.calcular(operacion, numero1);
+					CalculadoraDAO calculadoraDAO = new CalculadoraDAO();
+					String guardado = numero1 +""+ operacion;
+					calculadoraDAO.guardarResultadoRaiz(guardado, resultado);
 				} else {
 
-					double numero2 = Double.parseDouble(textoPantalla.getText());
+					numero2 = Double.parseDouble(textoPantalla.getText());
 					resultado = Operaciones.calcular(numero1, numero2, operacion);
+					CalculadoraDAO calculadoraDAO = new CalculadoraDAO();
+					String guardado = numero1 +""+ operacion +""+ numero2;
+					calculadoraDAO.guardarResultado(guardado, resultado);
 				}
 				textoPantalla.setText(String.valueOf(resultado));
 
 				// Guardar el resultado en la base de datos
-				CalculadoraDAO calculadoraDAO = new CalculadoraDAO();
-				calculadoraDAO.guardarResultado(operacion, resultado);
+
 
 			}
 		});
@@ -251,7 +258,7 @@ public class Calculadora extends JFrame {
 		btnRaiz.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				numero1 = Double.parseDouble(textoPantalla.getText());
-				operacion = "sqrt";
+				operacion = "√";
 				textoPantalla.setText("");
 
 			}

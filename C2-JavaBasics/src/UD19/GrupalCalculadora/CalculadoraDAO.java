@@ -21,6 +21,17 @@ public class CalculadoraDAO {
 			e.printStackTrace();
 		}
 	}
+	public void guardarResultadoRaiz(String operacion, double resultado) {
+		String query = "INSERT INTO resultados_calculadora (operacion, resultado) VALUES (?, ?)";
+		try (Connection conexion = ConexionDB.obtenerConexion();
+				PreparedStatement stmt = conexion.prepareStatement(query)) {
+			stmt.setString(1, operacion);
+			stmt.setDouble(2, resultado);
+			stmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
 
 	public List<String> obtenerHistorial() {
 		List<String> historial = new ArrayList<>();
