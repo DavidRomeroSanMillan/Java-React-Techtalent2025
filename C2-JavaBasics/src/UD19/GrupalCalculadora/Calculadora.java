@@ -15,8 +15,9 @@ import UD19.GrupalCalculadora.CalculadoraDAO;
 
 import java.util.List;
 
+
 public class Calculadora extends JFrame {
-	
+
 	private JPanel contentPane;
 	private JTextField textoPantalla;
 	private JButton btnSuma;
@@ -77,10 +78,10 @@ public class Calculadora extends JFrame {
 		contentPane.add(textoPantalla);
 
 		menuBar = new JMenuBar();
-		JMenu historial = new JMenu("Historial");
+		JMenu historial = new JMenu("Menú");
 		menuBar.add(historial);
 
-		JMenuItem verHistorial = new JMenuItem("Ver Historial");
+		JMenuItem verHistorial = new JMenuItem("Historial");
 		verHistorial.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				CalculadoraDAO calculadoraDAO = new CalculadoraDAO();
@@ -103,6 +104,7 @@ public class Calculadora extends JFrame {
 		btnSuma.setBounds(190, 132, 50, 48);
 		btnSuma.setFont(new Font("Arial", Font.BOLD, 18));
 		btnSuma.setBackground(new Color(252, 81, 81));
+		
 		contentPane.add(btnSuma);
 
 		btn3 = new JButton("3");
@@ -218,19 +220,17 @@ public class Calculadora extends JFrame {
 				if (operacion.equals("√")) {
 					resultado = Operaciones.calcular(operacion, numero1);
 					CalculadoraDAO calculadoraDAO = new CalculadoraDAO();
-					String guardado = numero1 +""+ operacion;
+					String guardado = numero1 + "" + operacion;
 					calculadoraDAO.guardarResultadoRaiz(guardado, resultado);
 				} else {
 
 					numero2 = Double.parseDouble(textoPantalla.getText());
 					resultado = Operaciones.calcular(numero1, numero2, operacion);
 					CalculadoraDAO calculadoraDAO = new CalculadoraDAO();
-					String guardado = numero1 +""+ operacion +""+ numero2;
+					String guardado = numero1 + "" + operacion + "" + numero2;
 					calculadoraDAO.guardarResultado(guardado, resultado);
 				}
 				textoPantalla.setText(String.valueOf(resultado));
-
-				// Guardar el resultado en la base de datos
 
 
 			}

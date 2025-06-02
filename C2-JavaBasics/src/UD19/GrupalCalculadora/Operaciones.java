@@ -1,6 +1,8 @@
 
 package UD19.GrupalCalculadora;
 
+import javax.swing.JOptionPane;
+
 public class Operaciones {
 
 	public static double calcular(double num1, double num2, String operador) {
@@ -13,7 +15,7 @@ public class Operaciones {
 			return num1 * num2;
 		case "/":
 			if (num2 == 0) {
-				throw new ArithmeticException("No se puede dividir por cero");
+				JOptionPane.showMessageDialog(null, "No se puede dividir entre cero");				
 			}
 			return num1 / num2;
 		case "^":
