@@ -1,0 +1,31 @@
+h1 {
+  color: chartreuse;
+  text-align: justify;
+  margin: auto;
+}
+ol {
+  color: #ff00ff;
+  background-color: #775500;
+}
+p {
+  color: #775500;
+  text-align: left;
+}
+p::first-line {
+  font-variant: small-caps;
+}
+h1::first-letter {
+  font-size: larger;
+}
+a:link {
+  color: blue;
+}
+a:visited {
+  color: purple;
+}
+a:hover {
+  color: aqua;
+}
+a:active {
+  color: brown;
+}
