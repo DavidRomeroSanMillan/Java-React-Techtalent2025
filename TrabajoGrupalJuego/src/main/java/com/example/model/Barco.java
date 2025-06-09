@@ -22,7 +22,9 @@ public class Barco {
     public List<int[]> getPosiciones() {
         return posiciones;
     }
-
+    public void setPosiciones(List<int[]> posiciones) {
+        this.posiciones = posiciones;
+    }
     public boolean verificarHundimiento(List<int[]> impactos) {
         for (int[] posicion : posiciones) {
             boolean impactado = false;
