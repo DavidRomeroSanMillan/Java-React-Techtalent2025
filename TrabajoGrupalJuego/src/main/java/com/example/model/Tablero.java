@@ -25,7 +25,14 @@ public class Tablero {
         }
         return posiciones;
     }
-
+    public boolean disparar(int fila, int columna) {
+        for (Barco barco : barcos) {
+            if (barco.contienePosicion(fila, columna)) {
+                return true; // Acierto
+            }
+        }
+        return false; // Fallo
+    }
 
     public boolean esImpacto(int x, int y) {
         for (Barco barco : barcos) { // barcos es la lista de barcos en el tablero
