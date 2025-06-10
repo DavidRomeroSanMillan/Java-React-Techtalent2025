@@ -22,11 +22,12 @@ public class HundirLaFlota {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setSize(800, 600);
 		frame.setLayout(new BorderLayout());
-
+		frame.setResizable(true);
+		crearMenu();
 		mensajeEstado = new JLabel("Bienvenido al juego. ¡Coloca tus barcos!", SwingConstants.CENTER);
 		mensajeEstado.setFont(new Font("Arial", Font.BOLD, 16));
 		frame.add(mensajeEstado, BorderLayout.NORTH);
-
+		
 		tableroJugador1 = new JPanel(new GridLayout(tamañoTablero, tamañoTablero));
 		botonesJugador1 = new JButton[tamañoTablero][tamañoTablero];
 		inicializarTablero(botonesJugador1, tableroJugador1, "Jugador 1");
@@ -51,6 +52,20 @@ public class HundirLaFlota {
 		// Permitir la colocación de barcos
 		colocarBarcosInicial(botonesJugador1, tablero1);
 		colocarBarcosInicial(botonesJugador2, tablero2);
+	}
+	private void crearMenu() {
+	    JMenuBar menuBar = new JMenuBar();
+	    JMenu menuJuego = new JMenu("Juego");
+	    JMenuItem reiniciar = new JMenuItem("Reiniciar");
+	    JMenuItem salir = new JMenuItem("Salir");
+
+	    reiniciar.addActionListener(e -> reiniciarJuego());
+	    salir.addActionListener(e -> System.exit(0));
+
+	    menuJuego.add(reiniciar);
+	    menuJuego.add(salir);
+	    menuBar.add(menuJuego);
+	    frame.setJMenuBar(menuBar);
 	}
 
 	private void inicializarTablero(JButton[][] botones, JPanel panel, String jugador) {
