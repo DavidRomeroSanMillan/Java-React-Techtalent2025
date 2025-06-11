@@ -2,6 +2,7 @@ package com.example;
 
 import com.example.model.Barco;
 import com.example.model.Tablero;
+import com.example.util.JugadoresDAO;
 
 import javax.swing.*;
 import java.awt.*;
@@ -10,6 +11,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class HundirLaFlota {
+	private JugadoresDAO jugadorDAO = new JugadoresDAO();
+
 	private JFrame frame;
 	private JPanel tableroJugador1, tableroJugador2;
 	private JButton[][] botonesJugador1, botonesJugador2;
@@ -135,6 +138,8 @@ public class HundirLaFlota {
 						e -> manejarDisparo(botonesJugador1[fila][columna], fila, columna, tablero1, botonesJugador1));
 			}
 		}
+		JugadoresDAO.insertarJugador(nombreJugador1);
+		JugadoresDAO.insertarJugador(nombreJugador2);
 
 		mensajeEstado.setText("Turno de " + nombreJugador1 + ". Selecciona una casilla en el tablero del oponente.");
 	}
@@ -415,6 +420,10 @@ public class HundirLaFlota {
 
 		if (verificarDerrota(logicaTablero)) {
 			String ganador = esTurnoJugador1 ? nombreJugador1 : nombreJugador2;
+
+			// Actualizar victorias en la base de datos
+			jugadorDAO.actualizarVictorias(ganador);
+
 			int opcion = JOptionPane.showOptionDialog(frame, "¡" + ganador + " ha ganado el juego! ¿Quieres reiniciar?",
 					"Fin del juego", JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE, null,
 					new String[] { "Reiniciar", "Salir" }, "Reiniciar");
