@@ -20,7 +20,6 @@ public class HundirLaFlota {
 	public HundirLaFlota() {
 		frame = new JFrame("Trabajo Grupal - Hundir la Flota");
 
-		
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setSize(800, 600);
 		frame.setLayout(new BorderLayout());
@@ -86,6 +85,13 @@ public class HundirLaFlota {
 	private String nombreJugador2;
 
 	private void iniciarJuego() {
+		if (nombreJugador1 != null && nombreJugador2 != null) {
+			// Actualizar los bordes de los paneles con los nombres existentes
+			tableroJugador1.setBorder(BorderFactory.createTitledBorder(nombreJugador1));
+			tableroJugador2.setBorder(BorderFactory.createTitledBorder(nombreJugador2));
+			return; // Los nombres ya han sido solicitados
+		}
+
 		// Solicitar los nombres de los jugadores
 		nombreJugador1 = JOptionPane.showInputDialog(frame, "Introduce el nombre del Jugador 1:",
 				"Nombre del Jugador 1", JOptionPane.PLAIN_MESSAGE);
@@ -166,12 +172,10 @@ public class HundirLaFlota {
 									mensajeEstado.setText("Selecciona " + tamañosBarcos[indiceBarco[0]]
 											+ " casillas para colocar un barco.");
 								} else {
-									int jugador = 1;
-									mensajeEstado.setText(
-											"Todos los barcos del jugador " + jugador + " han sido colocados.");
+									mensajeEstado.setText("Todos los barcos del jugador han sido colocados.");
 									habilitarTablero(tablero, false);
 
-									// Restablecer las casillas grises a azul
+									// Restablecer las casillas negras a gris claro
 									for (int x = 0; x < tablero.length; x++) {
 										for (int y = 0; y < tablero[x].length; y++) {
 											if (tablero[x][y].getBackground().equals(Color.BLACK)) {
@@ -180,11 +184,36 @@ public class HundirLaFlota {
 										}
 									}
 
-									jugador++;
+									// Verificar si es el tablero del segundo jugador
 									if (logicaTablero == tablero2) {
-										iniciarJuego();
+										mensajeEstado
+												.setText("¡Todos los barcos han sido colocados! Comienza el juego.");
+										habilitarTablero(botonesJugador2, true); // Habilitar el tablero del jugador 2
+										habilitarTablero(botonesJugador1, false); // Deshabilitar el tablero del jugador
+																					// 1
+
+										// Asignar ActionListener para manejar disparos
+
+										for (int filaActual = 0; filaActual < tamañoTablero; filaActual++) {
+											for (int columnaActual = 0; columnaActual < tamañoTablero; columnaActual++) {
+												final int filaSeleccionada = filaActual;
+												final int columnaSeleccionada = columnaActual;
+												botonesJugador2[filaActual][columnaActual]
+														.addActionListener(evento -> manejarDisparo(
+																botonesJugador2[filaSeleccionada][columnaSeleccionada],
+																filaSeleccionada, columnaSeleccionada, tablero2,
+																botonesJugador2));
+												botonesJugador1[filaActual][columnaActual]
+														.addActionListener(evento -> manejarDisparo(
+																botonesJugador1[filaSeleccionada][columnaSeleccionada],
+																filaSeleccionada, columnaSeleccionada, tablero1,
+																botonesJugador1));
+											}
+										}
+
 									}
 								}
+
 							} else {
 								JOptionPane.showMessageDialog(frame, "Selección inválida. Intenta nuevamente.");
 								resetearSeleccion(tablero, posicionesSeleccionadas);
