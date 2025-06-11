@@ -1,0 +1,16 @@
+div {
+    width: 65px;
+    height: 65px;
+    line-height: 65px;
+    border: 3px solid rgb(188, 84, 28);
+    padding: 7px;
+    border-radius: 45px;
+    float: left;
+    font-size: 38px;
+    text-align: center;
+    font-family: helvetica;
+    margin-right: 4px;
+    margin-top: 16px;
+    color: rgb(236, 166, 68);
+    background-color: rgb(40, 45, 36);
+}
