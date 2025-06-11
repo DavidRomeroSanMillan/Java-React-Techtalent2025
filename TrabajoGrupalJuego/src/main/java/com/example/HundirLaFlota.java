@@ -146,6 +146,9 @@ private void iniciarJuego() {
 				final int fila = i; // Capturar el valor actual de i
 				final int columna = j; // Capturar el valor actual de j
 				JButton boton = tablero[i][j];
+	            for (ActionListener listener : boton.getActionListeners()) {
+	                boton.removeActionListener(listener);
+	            }
 				boton.addActionListener(e -> {
 					if (boton.getBackground().equals(Color.LIGHT_GRAY)
 							&& posicionesSeleccionadas.size() < tamañosBarcos[indiceBarco[0]]) {
