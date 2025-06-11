@@ -72,7 +72,7 @@ public class HundirLaFlota {
 		for (int i = 0; i < tamañoTablero; i++) {
 			for (int j = 0; j < tamañoTablero; j++) {
 				botones[i][j] = new JButton();
-				botones[i][j].setBackground(Color.BLUE);
+				botones[i][j].setBackground(Color.LIGHT_GRAY);
 				panel.add(botones[i][j]);
 			}
 		}
@@ -147,9 +147,9 @@ private void iniciarJuego() {
 				final int columna = j; // Capturar el valor actual de j
 				JButton boton = tablero[i][j];
 				boton.addActionListener(e -> {
-					if (boton.getBackground().equals(Color.BLUE)
+					if (boton.getBackground().equals(Color.LIGHT_GRAY)
 							&& posicionesSeleccionadas.size() < tamañosBarcos[indiceBarco[0]]) {
-						boton.setBackground(Color.GRAY);
+						boton.setBackground(Color.BLACK);
 						posicionesSeleccionadas.add(new int[] { fila, columna }); // Usar fila y columna
 						if (posicionesSeleccionadas.size() == tamañosBarcos[indiceBarco[0]]) {
 							if (validarBarcoSeleccionado(posicionesSeleccionadas, logicaTablero)) {
@@ -170,8 +170,8 @@ private void iniciarJuego() {
 									// Restablecer las casillas grises a azul
 									for (int x = 0; x < tablero.length; x++) {
 										for (int y = 0; y < tablero[x].length; y++) {
-											if (tablero[x][y].getBackground().equals(Color.GRAY)) {
-												tablero[x][y].setBackground(Color.BLUE);
+											if (tablero[x][y].getBackground().equals(Color.BLACK)) {
+												tablero[x][y].setBackground(Color.LIGHT_GRAY);
 											}
 										}
 									}
@@ -264,7 +264,7 @@ private void iniciarJuego() {
 
 	private void resetearSeleccion(JButton[][] tablero, List<int[]> posicionesSeleccionadas) {
 		for (int[] posicion : posicionesSeleccionadas) {
-			tablero[posicion[0]][posicion[1]].setBackground(Color.BLUE);
+			tablero[posicion[0]][posicion[1]].setBackground(Color.LIGHT_GRAY);
 		}
 		posicionesSeleccionadas.clear();
 	}
@@ -281,7 +281,7 @@ private void iniciarJuego() {
 	private void ocultarBarcos(JButton[][] botones, Tablero logicaTablero) {
 		for (Barco barco : logicaTablero.getBarcos()) {
 			for (int[] posicion : barco.getPosiciones()) {
-				botones[posicion[0]][posicion[1]].setBackground(Color.BLUE);
+				botones[posicion[0]][posicion[1]].setBackground(Color.LIGHT_GRAY);
 			}
 		}
 	}
@@ -298,9 +298,9 @@ private void iniciarJuego() {
 					botonesJugador2[i][j].removeActionListener(listener);
 				}
 				// Restablecer el color y habilitar los botones
-				botonesJugador1[i][j].setBackground(Color.BLUE);
+				botonesJugador1[i][j].setBackground(Color.LIGHT_GRAY);
 				botonesJugador1[i][j].setEnabled(true);
-				botonesJugador2[i][j].setBackground(Color.BLUE);
+				botonesJugador2[i][j].setBackground(Color.LIGHT_GRAY);
 				botonesJugador2[i][j].setEnabled(true);
 			}
 		}
@@ -348,7 +348,7 @@ private void iniciarJuego() {
 			return;
 		}
 
-		if (!boton.getBackground().equals(Color.BLUE)) {
+		if (!boton.getBackground().equals(Color.LIGHT_GRAY)) {
 			JOptionPane.showMessageDialog(frame, "Esta casilla ya ha sido seleccionada. Elige otra.");
 			return;
 		}
@@ -370,7 +370,7 @@ private void iniciarJuego() {
 				}
 			}
 		} else {
-			boton.setBackground(Color.WHITE); // Fallo
+			boton.setBackground(Color.BLUE); // Fallo
 			mensajeEstado.setText("¡Fallo! Turno del siguiente jugador.");
 		}
 
