@@ -87,59 +87,57 @@ public class HundirLaFlota {
 	private String nombreJugador1;
 	private String nombreJugador2;
 
+	private String[] solicitarNombreYContraseña(String jugador) {
+		JPanel panel = new JPanel(new GridLayout(2, 2, 5, 5));
+		JLabel labelNombre = new JLabel("Nombre:");
+		JTextField campoNombre = new JTextField();
+		JLabel labelContraseña = new JLabel("Contraseña:");
+		JPasswordField campoContraseña = new JPasswordField();
+
+		panel.add(labelNombre);
+		panel.add(campoNombre);
+		panel.add(labelContraseña);
+		panel.add(campoContraseña);
+
+		int opcion = JOptionPane.showConfirmDialog(frame, panel, "Introduce los datos del " + jugador,
+				JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
+
+		if (opcion == JOptionPane.OK_OPTION) {
+			String nombre = campoNombre.getText().trim();
+			String contraseña = new String(campoContraseña.getPassword()).trim();
+			if (nombre.isEmpty()) {
+				nombre = jugador; // Nombre por defecto si está vacío
+			}
+			return new String[] { nombre, contraseña };
+		} else {
+			throw new IllegalArgumentException("Operación cancelada por el usuario.");
+		}
+	}
+
 	private void iniciarJuego() {
-		if (nombreJugador1 != null && nombreJugador2 != null) {
-			// Actualizar los bordes de los paneles con los nombres existentes
-			tableroJugador1.setBorder(BorderFactory.createTitledBorder(nombreJugador1));
-			tableroJugador2.setBorder(BorderFactory.createTitledBorder(nombreJugador2));
-			return; // Los nombres ya han sido solicitados
-		}
+		while (true) {
+			try {
+				// Solicitar datos del Jugador 1
+				String[] datosJugador1 = solicitarNombreYContraseña("Jugador 1");
+				jugadorDAO.insertarJugador(datosJugador1[0], datosJugador1[1]);
 
-		// Solicitar los nombres de los jugadores
-		nombreJugador1 = JOptionPane.showInputDialog(frame, "Introduce el nombre del Jugador 1:",
-				"Nombre del Jugador 1", JOptionPane.PLAIN_MESSAGE);
-		if (nombreJugador1 == null || nombreJugador1.trim().isEmpty()) {
-			nombreJugador1 = "Jugador 1"; // Valor predeterminado si no se introduce un nombre
-		}
+				// Solicitar datos del Jugador 2
+				String[] datosJugador2 = solicitarNombreYContraseña("Jugador 2");
+				jugadorDAO.insertarJugador(datosJugador2[0], datosJugador2[1]);
 
-		nombreJugador2 = JOptionPane.showInputDialog(frame, "Introduce el nombre del Jugador 2:",
-				"Nombre del Jugador 2", JOptionPane.PLAIN_MESSAGE);
-		if (nombreJugador2 == null || nombreJugador2.trim().isEmpty()) {
-			nombreJugador2 = "Jugador 2"; // Valor predeterminado si no se introduce un nombre
-		}
+				// Asignar nombres y actualizar bordes
+				nombreJugador1 = datosJugador1[0];
+				nombreJugador2 = datosJugador2[0];
+				tableroJugador1.setBorder(BorderFactory.createTitledBorder(nombreJugador1));
+				tableroJugador2.setBorder(BorderFactory.createTitledBorder(nombreJugador2));
 
-		// Actualizar los bordes de los paneles con los nombres de los jugadores
-		tableroJugador1.setBorder(BorderFactory.createTitledBorder(nombreJugador1));
-		tableroJugador2.setBorder(BorderFactory.createTitledBorder(nombreJugador2));
-
-		// Ocultar los barcos de ambos jugadores
-		ocultarBarcos(botonesJugador1, tablero1);
-		ocultarBarcos(botonesJugador2, tablero2);
-
-		habilitarTablero(botonesJugador2, true); // Solo habilitar el tablero del jugador 2
-		habilitarTablero(botonesJugador1, false);
-
-		// Asignar ActionListener al tablero del jugador 2
-		for (int i = 0; i < tamañoTablero; i++) {
-			for (int j = 0; j < tamañoTablero; j++) {
-				final int fila = i;
-				final int columna = j;
-				botonesJugador2[i][j].addActionListener(
-						e -> manejarDisparo(botonesJugador2[fila][columna], fila, columna, tablero2, botonesJugador2));
+				break; // Salir del bucle si todo es correcto
+			} catch (IllegalArgumentException e) {
+				JOptionPane.showMessageDialog(frame, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
 			}
 		}
 
-		// Asignar ActionListener al tablero del jugador 1
-		for (int i = 0; i < tamañoTablero; i++) {
-			for (int j = 0; j < tamañoTablero; j++) {
-				final int fila = i;
-				final int columna = j;
-				botonesJugador1[i][j].addActionListener(
-						e -> manejarDisparo(botonesJugador1[fila][columna], fila, columna, tablero1, botonesJugador1));
-			}
-		}
-		JugadoresDAO.insertarJugador(nombreJugador1);
-		JugadoresDAO.insertarJugador(nombreJugador2);
+		mensajeEstado.setText("Turno de " + nombreJugador1 + ". Selecciona una casilla en el tablero del oponente.");
 
 		mensajeEstado.setText("Turno de " + nombreJugador1 + ". Selecciona una casilla en el tablero del oponente.");
 	}
