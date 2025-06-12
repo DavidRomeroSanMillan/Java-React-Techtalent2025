@@ -21,15 +21,14 @@ public class HundirLaFlota {
 	private Tablero tablero1, tablero2;
 
 	public HundirLaFlota() {
-		frame = new JFrame("Trabajo Grupal - Hundir la Flota");
-
+		frame = new JFrame("Hundir la Flota");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setSize(800, 600);
+		frame.setSize(1000, 700);
 		frame.setLayout(new BorderLayout());
 		frame.setResizable(true);
 		crearMenu();
-		mensajeEstado = new JLabel("Bienvenido al juego. ¡Coloca tus barcos!", SwingConstants.CENTER);
-		mensajeEstado.setFont(new Font("Arial", Font.BOLD, 16));
+		mensajeEstado = new JLabel("¡Bienvenido a Hundir la Flota!", SwingConstants.CENTER);
+		mensajeEstado.setFont(new Font("Verdana", Font.BOLD, 18));
 		frame.add(mensajeEstado, BorderLayout.NORTH);
 
 		tableroJugador1 = new JPanel(new GridLayout(tamañoTablero, tamañoTablero));
@@ -44,6 +43,8 @@ public class HundirLaFlota {
 		tablero2 = new Tablero();
 
 		JPanel panelTableros = new JPanel(new GridLayout(1, 2));
+		panelTableros.setBackground(new Color(0, 102, 204)); // Azul oscuro
+
 		panelTableros.add(tableroJugador1);
 		panelTableros.add(tableroJugador2);
 		frame.add(panelTableros, BorderLayout.CENTER);
@@ -88,16 +89,39 @@ public class HundirLaFlota {
 	private String nombreJugador2;
 
 	private String[] solicitarNombreYContraseña(String jugador) {
-		JPanel panel = new JPanel(new GridLayout(2, 2, 5, 5));
-		JLabel labelNombre = new JLabel("Nombre:");
-		JTextField campoNombre = new JTextField();
-		JLabel labelContraseña = new JLabel("Contraseña:");
-		JPasswordField campoContraseña = new JPasswordField();
+		JPanel panel = new JPanel(new GridBagLayout());
+		panel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(new Color(30, 144, 255), 2),
+				"Inicio de sesión - " + jugador, 0, 0, new Font("Verdana", Font.BOLD, 14), new Color(30, 144, 255)));
 
-		panel.add(labelNombre);
-		panel.add(campoNombre);
-		panel.add(labelContraseña);
-		panel.add(campoContraseña);
+		GridBagConstraints gbc = new GridBagConstraints();
+		gbc.insets = new Insets(10, 10, 10, 10);
+		gbc.fill = GridBagConstraints.HORIZONTAL;
+
+		JLabel labelNombre = new JLabel("Nombre:");
+		labelNombre.setFont(new Font("Verdana", Font.PLAIN, 12));
+		labelNombre.setForeground(new Color(30, 144, 255));
+		gbc.gridx = 0;
+		gbc.gridy = 0;
+		panel.add(labelNombre, gbc);
+
+		JTextField campoNombre = new JTextField(15);
+		campoNombre.setFont(new Font("Verdana", Font.PLAIN, 12));
+		gbc.gridx = 1;
+		gbc.gridy = 0;
+		panel.add(campoNombre, gbc);
+
+		JLabel labelContraseña = new JLabel("Contraseña:");
+		labelContraseña.setFont(new Font("Verdana", Font.PLAIN, 12));
+		labelContraseña.setForeground(new Color(30, 144, 255));
+		gbc.gridx = 0;
+		gbc.gridy = 1;
+		panel.add(labelContraseña, gbc);
+
+		JPasswordField campoContraseña = new JPasswordField(15);
+		campoContraseña.setFont(new Font("Verdana", Font.PLAIN, 12));
+		gbc.gridx = 1;
+		gbc.gridy = 1;
+		panel.add(campoContraseña, gbc);
 
 		int opcion = JOptionPane.showConfirmDialog(frame, panel, "Introduce los datos del " + jugador,
 				JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
@@ -110,7 +134,9 @@ public class HundirLaFlota {
 			}
 			return new String[] { nombre, contraseña };
 		} else {
-			throw new IllegalArgumentException("Operación cancelada por el usuario.");
+			frame.dispose();
+			System.exit(0);
+			return null;
 		}
 	}
 
