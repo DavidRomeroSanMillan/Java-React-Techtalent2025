@@ -6,7 +6,7 @@ import java.util.List;
 public class Barco {
 	private List<int[]> posiciones;
 	private List<int[]> posicionesImpactadas = new ArrayList<>();
-	private boolean hundido = false; // Declaración de la variable
+	private boolean hundido = false; 
 	private int tamaño;
 
 	public Barco(int tamaño) {
@@ -43,7 +43,7 @@ public class Barco {
 	public void registrarImpacto(int fila, int columna) {
 		for (int[] impacto : posicionesImpactadas) {
 			if (impacto[0] == fila && impacto[1] == columna) {
-				return; // Ya está registrado
+				return; 
 			}
 		}
 		posicionesImpactadas.add(new int[] { fila, columna });
@@ -68,11 +68,11 @@ public class Barco {
 				}
 			}
 			if (!impactado) {
-				return false; // Aún hay partes del barco sin impactar
+				return false; 
 			}
 		}
-		hundido = true; // Actualización del estado del barco
-		return true; // Todas las partes del barco han sido impactadas
+		hundido = true; 
+		return true; 
 	}
 
 	public boolean isHundido() {

@@ -43,7 +43,7 @@ public class HundirLaFlota {
 		tablero2 = new Tablero();
 
 		JPanel panelTableros = new JPanel(new GridLayout(1, 2));
-		panelTableros.setBackground(new Color(0, 102, 204)); // Azul oscuro
+		panelTableros.setBackground(new Color(0, 102, 204)); 
 
 		panelTableros.add(tableroJugador1);
 		panelTableros.add(tableroJugador2);
@@ -51,10 +51,8 @@ public class HundirLaFlota {
 
 		frame.setVisible(true);
 
-		// Llamar a iniciarJuego para solicitar los nombres antes de colocar los barcos
 		iniciarJuego();
 
-		// Permitir la colocación de barcos
 		colocarBarcosInicial(botonesJugador1, tablero1);
 		colocarBarcosInicial(botonesJugador2, tablero2);
 	}
@@ -130,7 +128,7 @@ public class HundirLaFlota {
 			String nombre = campoNombre.getText().trim();
 			String contraseña = new String(campoContraseña.getPassword()).trim();
 			if (nombre.isEmpty()) {
-				nombre = jugador; // Nombre por defecto si está vacío
+				nombre = jugador;
 			}
 			return new String[] { nombre, contraseña };
 		} else {
@@ -143,21 +141,18 @@ public class HundirLaFlota {
 	private void iniciarJuego() {
 		while (true) {
 			try {
-				// Solicitar datos del Jugador 1
 				String[] datosJugador1 = solicitarNombreYContraseña("Jugador 1");
 				jugadorDAO.insertarJugador(datosJugador1[0], datosJugador1[1]);
 
-				// Solicitar datos del Jugador 2
 				String[] datosJugador2 = solicitarNombreYContraseña("Jugador 2");
 				jugadorDAO.insertarJugador(datosJugador2[0], datosJugador2[1]);
 
-				// Asignar nombres y actualizar bordes
 				nombreJugador1 = datosJugador1[0];
 				nombreJugador2 = datosJugador2[0];
 				tableroJugador1.setBorder(BorderFactory.createTitledBorder(nombreJugador1));
 				tableroJugador2.setBorder(BorderFactory.createTitledBorder(nombreJugador2));
 
-				break; // Salir del bucle si todo es correcto
+				break; 
 			} catch (IllegalArgumentException e) {
 				JOptionPane.showMessageDialog(frame, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
 			}
@@ -175,12 +170,12 @@ public class HundirLaFlota {
 
 		mensajeEstado.setText("Selecciona " + tamañosBarcos[indiceBarco[0]] + " casillas para colocar un barco.");
 
-		habilitarTablero(tablero, true); // Asegúrate de habilitar el tablero para interactuar
+		habilitarTablero(tablero, true); 
 
 		for (int i = 0; i < tablero.length; i++) {
 			for (int j = 0; j < tablero[i].length; j++) {
-				final int fila = i; // Capturar el valor actual de i
-				final int columna = j; // Capturar el valor actual de j
+				final int fila = i; 
+				final int columna = j; 
 				JButton boton = tablero[i][j];
 				for (ActionListener listener : boton.getActionListeners()) {
 					boton.removeActionListener(listener);
@@ -189,7 +184,7 @@ public class HundirLaFlota {
 					if (boton.getBackground().equals(Color.LIGHT_GRAY)
 							&& posicionesSeleccionadas.size() < tamañosBarcos[indiceBarco[0]]) {
 						boton.setBackground(Color.BLACK);
-						posicionesSeleccionadas.add(new int[] { fila, columna }); // Usar fila y columna
+						posicionesSeleccionadas.add(new int[] { fila, columna }); 
 						if (posicionesSeleccionadas.size() == tamañosBarcos[indiceBarco[0]]) {
 							if (validarBarcoSeleccionado(posicionesSeleccionadas, logicaTablero)) {
 								Barco barco = new Barco(tamañosBarcos[indiceBarco[0]]);
@@ -204,7 +199,6 @@ public class HundirLaFlota {
 									mensajeEstado.setText("Todos los barcos del jugador han sido colocados.");
 									habilitarTablero(tablero, false);
 
-									// Restablecer las casillas negras a gris claro
 									for (int x = 0; x < tablero.length; x++) {
 										for (int y = 0; y < tablero[x].length; y++) {
 											if (tablero[x][y].getBackground().equals(Color.BLACK)) {
@@ -213,15 +207,12 @@ public class HundirLaFlota {
 										}
 									}
 
-									// Verificar si es el tablero del segundo jugador
 									if (logicaTablero == tablero2) {
 										mensajeEstado
 												.setText("¡Todos los barcos han sido colocados! Comienza el juego.");
-										habilitarTablero(botonesJugador2, true); // Habilitar el tablero del jugador 2
-										habilitarTablero(botonesJugador1, false); // Deshabilitar el tablero del jugador
-																					// 1
+										habilitarTablero(botonesJugador2, true); 
+										habilitarTablero(botonesJugador1, false); 
 
-										// Asignar ActionListener para manejar disparos
 
 										for (int filaActual = 0; filaActual < tamañoTablero; filaActual++) {
 											for (int columnaActual = 0; columnaActual < tamañoTablero; columnaActual++) {
@@ -267,14 +258,12 @@ public class HundirLaFlota {
 			return false;
 		}
 
-		// Validar que las posiciones estén dentro de los límites del tablero
 		for (int[] posicion : posiciones) {
 			if (posicion[0] < 0 || posicion[0] >= tamañoTablero || posicion[1] < 0 || posicion[1] >= tamañoTablero) {
 				return false;
 			}
 		}
 
-		// Verificar si están en la misma fila o columna
 		boolean mismaFila = true;
 		boolean mismaColumna = true;
 		int filaInicial = posiciones.get(0)[0];
@@ -295,7 +284,6 @@ public class HundirLaFlota {
 
 		final boolean esMismaFila = mismaFila;
 
-		// Verificar que las posiciones sean consecutivas
 		posiciones.sort((a, b) -> esMismaFila ? Integer.compare(a[1], b[1]) : Integer.compare(a[0], b[0]));
 
 		for (int i = 1; i < posiciones.size(); i++) {
@@ -310,7 +298,6 @@ public class HundirLaFlota {
 			}
 		}
 
-		// Verificar que no se superpongan con otros barcos
 		for (int[] posicion : posiciones) {
 			for (Barco existente : logicaTablero.getBarcos()) {
 				for (int[] posicionExistente : existente.getPosiciones()) {
@@ -334,10 +321,10 @@ public class HundirLaFlota {
 	private boolean verificarDerrota(Tablero logicaTablero) {
 		for (Barco barco : logicaTablero.getBarcos()) {
 			if (!barco.estaHundido()) {
-				return false; // Si hay al menos un barco no hundido, el jugador no ha perdido
+				return false; 
 			}
 		}
-		return true; // Todos los barcos están hundidos
+		return true; 
 	}
 
 	private void ocultarBarcos(JButton[][] botones, Tablero logicaTablero) {
@@ -349,17 +336,14 @@ public class HundirLaFlota {
 	}
 
 	private void reiniciarJuego() {
-		// Reiniciar los tableros
 		for (int i = 0; i < tamañoTablero; i++) {
 			for (int j = 0; j < tamañoTablero; j++) {
-				// Eliminar todos los ActionListener existentes
 				for (ActionListener listener : botonesJugador1[i][j].getActionListeners()) {
 					botonesJugador1[i][j].removeActionListener(listener);
 				}
 				for (ActionListener listener : botonesJugador2[i][j].getActionListeners()) {
 					botonesJugador2[i][j].removeActionListener(listener);
 				}
-				// Restablecer el color y habilitar los botones
 				botonesJugador1[i][j].setBackground(Color.LIGHT_GRAY);
 				botonesJugador1[i][j].setEnabled(true);
 				botonesJugador2[i][j].setBackground(Color.LIGHT_GRAY);
@@ -367,27 +351,23 @@ public class HundirLaFlota {
 			}
 		}
 
-		// Reiniciar la lógica de los tableros
 		tablero1 = new Tablero();
 		tablero2 = new Tablero();
 
-		// Reiniciar variables
 		esTurnoJugador1 = true;
 		disparoRealizado = false;
 
-		// Actualizar el mensaje de estado
 		mensajeEstado.setText("Bienvenido al juego. ¡Coloca tus barcos!");
 
-		// Permitir la colocación de barcos nuevamente
 		colocarBarcosInicial(botonesJugador1, tablero1);
 		colocarBarcosInicial(botonesJugador2, tablero2);
 	}
 
-	private boolean esTurnoJugador1 = true; // Variable para rastrear el turno actual
+	private boolean esTurnoJugador1 = true; 
 
 	private void cambiarTurno() {
-		esTurnoJugador1 = !esTurnoJugador1; // Alternar el turno
-		disparoRealizado = false; // Reiniciar la variable de control
+		esTurnoJugador1 = !esTurnoJugador1; 
+		disparoRealizado = false; 
 
 		if (esTurnoJugador1) {
 			habilitarTablero(botonesJugador1, false);
@@ -403,7 +383,7 @@ public class HundirLaFlota {
 
 	}
 
-	private boolean disparoRealizado = false; // Variable para controlar si ya se realizó un disparo en el turno actual
+	private boolean disparoRealizado = false; 
 
 	private void manejarDisparo(JButton boton, int fila, int columna, Tablero logicaTablero,
 			JButton[][] tableroBotones) {
@@ -417,11 +397,10 @@ public class HundirLaFlota {
 			return;
 		}
 
-		if (logicaTablero.disparar(fila, columna)) { // Verifica si hay un barco en la posición
-			boton.setBackground(Color.RED); // Acierto
+		if (logicaTablero.disparar(fila, columna)) { 
+			boton.setBackground(Color.RED); 
 			mensajeEstado.setText("¡Acierto! Turno del siguiente jugador.");
 
-			// Verificar si el disparo hundió un barco
 			for (Barco barco : logicaTablero.getBarcos()) {
 				for (int[] posicion : barco.getPosiciones()) {
 					if (posicion[0] == fila && posicion[1] == columna) {
@@ -434,18 +413,16 @@ public class HundirLaFlota {
 				}
 			}
 		} else {
-			boton.setBackground(Color.BLUE); // Fallo
+			boton.setBackground(Color.BLUE); 
 			mensajeEstado.setText("¡Fallo! Turno del siguiente jugador.");
 		}
 
-		disparoRealizado = true; // Marcar que el disparo ya se realizó
+		disparoRealizado = true; 
 
-		// Verificar si el jugador oponente ha perdido
 
 		if (verificarDerrota(logicaTablero)) {
 			String ganador = esTurnoJugador1 ? nombreJugador1 : nombreJugador2;
 
-			// Actualizar victorias en la base de datos
 			jugadorDAO.actualizarVictorias(ganador);
 
 			int opcion = JOptionPane.showOptionDialog(frame, "¡" + ganador + " ha ganado el juego! ¿Quieres reiniciar?",
@@ -453,15 +430,15 @@ public class HundirLaFlota {
 					new String[] { "Reiniciar", "Salir" }, "Reiniciar");
 
 			if (opcion == JOptionPane.YES_OPTION) {
-				reiniciarJuego(); // Reinicia el juego
+				reiniciarJuego(); 
 			} else {
-				System.exit(0); // Cierra la aplicación
+				System.exit(0); 
 			}
-			return; // Detener el flujo del método
+			return; 
 		}
 
-		habilitarTablero(tableroBotones, false); // Deshabilitar el tablero del jugador actual
-		SwingUtilities.invokeLater(this::cambiarTurno); // Cambiar el turno
+		habilitarTablero(tableroBotones, false); 
+		SwingUtilities.invokeLater(this::cambiarTurno); 
 	}
 
 	public static void main(String[] args) {

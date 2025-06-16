@@ -17,20 +17,17 @@ public class JugadoresDAO {
 		try (Connection conn = DBConexion.getConnection();
 				PreparedStatement selectStmt = conn.prepareStatement(sqlSelect)) {
 
-			// Verificar si el jugador ya existe
 			selectStmt.setString(1, nombre);
 			try (ResultSet rs = selectStmt.executeQuery()) {
 				if (rs.next()) {
-					// Si el jugador existe, verificar la contraseña
 					String contraseñaAlmacenada = rs.getString("contraseña");
 					if (!contraseñaAlmacenada.equals(hashContraseña(contraseña))) {
 						throw new IllegalArgumentException("La contraseña no coincide para el jugador: " + nombre);
 					}
-					return; // Si la contraseña coincide, no es necesario insertar
+					return;
 				}
 			}
 
-			// Si el jugador no existe, insertar un nuevo registro
 			try (PreparedStatement insertStmt = conn.prepareStatement(sqlInsert)) {
 				insertStmt.setString(1, nombre);
 				insertStmt.setString(2, hashContraseña(contraseña));

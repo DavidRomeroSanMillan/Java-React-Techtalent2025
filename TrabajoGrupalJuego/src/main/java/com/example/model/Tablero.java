@@ -29,20 +29,20 @@ public class Tablero {
 	public boolean disparar(int fila, int columna) {
 		for (Barco barco : barcos) {
 			if (barco.contienePosicion(fila, columna)) {
-				return true; // Acierto
+				return true; 
 			}
 		}
-		return false; // Fallo
+		return false; 
 	}
 
 	public boolean esImpacto(int x, int y) {
-		for (Barco barco : barcos) { // barcos es la lista de barcos en el tablero
+		for (Barco barco : barcos) { 
 			for (int[] posicion : barco.getPosiciones()) {
 				if (posicion[0] == x && posicion[1] == y) {
-					return true; // Hay un barco en esta posición
+					return true; 
 				}
 			}
 		}
-		return false; // No hay barco en esta posición
+		return false; 
 	}
 }
