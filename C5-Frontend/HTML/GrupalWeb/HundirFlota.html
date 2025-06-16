@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Hundir la Flota</title>
+    <link rel="stylesheet" href="styles.css" />
+    <style>
+      .battleship-board {
+        display: grid;
+        grid-template-columns: repeat(10, 30px);
+        grid-template-rows: repeat(10, 30px);
+        gap: 2px;
+        justify-content: center;
+        margin: 2rem auto;
+        width: max-content;
+        background: #8d99ae;
+        border: 4px solid #2b2d42;
+        border-radius: 8px;
+      }
+      .cell {
+        width: 30px;
+        height: 30px;
+        background: #edf2f4;
+        border: 1px solid #2b2d42;
+        cursor: pointer;
+        transition: background 0.2s;
+      }
+      .cell.hit {
+        background: #ef233c;
+      }
+      .cell.miss {
+        background: #8d99ae;
+      }
+      .battleship-title {
+        text-align: center;
+        margin-top: 2rem;
+      }
+      .back-link {
+        display: block;
+        text-align: center;
+        margin-bottom: 2rem;
+        color: #2b2d42;
+        text-decoration: none;
+        font-weight: bold;
+      }
+      .back-link:hover {
+        color: #ef233c;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>Hundir la Flota</h1>
+    </header>
+    <nav>
+      <a href="WebGrupal.html">Inicio</a>
+      <a href="about.html">Sobre Nosotros</a>
+      <a href="HundirFlota.html">Hundir la Flota</a>
+      <a href="mastermind.html">Mastermind</a>
+    </nav>
+
+    <main>
+        <div class="barcos-paleta">
+<img src="img/Barco1.png" alt="Barco 1" class="barco-img" draggable="true" data-barco="barco1" data-size="2">    <!-- <img src="img/barco2.png" alt="Barco 2" class="barco-img" draggable="true" data-barco="barco2"> -->
+    <!-- Añade más barcos según necesites -->
+</div>
+      <div class="battleship-board" id="board"></div>
+    </main>
+    <footer>
+      <p>&copy; 2025 Nuestros Juegos</p>
+    </footer>
+    <script>
+      // Genera un tablero vacío de 10x10
+      const board = document.getElementById("board");
+      const size = 10;
+      // Ejemplo de posiciones de barcos (coordenadas simples)
+      const ships = [
+        { x: 2, y: 3 },
+        { x: 2, y: 4 },
+        { x: 2, y: 5 },
+        { x: 5, y: 7 },
+        { x: 6, y: 7 },
+        { x: 7, y: 7 },
+      ];
+
+      function isShip(x, y) {
+        return ships.some((ship) => ship.x === x && ship.y === y);
+      }
+
+      for (let y = 0; y < size; y++) {
+        for (let x = 0; x < size; x++) {
+          const cell = document.createElement("div");
+          cell.classList.add("cell");
+          cell.dataset.x = x;
+          cell.dataset.y = y;
+          cell.addEventListener("click", function () {
+            if (
+              cell.classList.contains("hit") ||
+              cell.classList.contains("miss")
+            )
+              return;
+            if (isShip(x, y)) {
+              cell.classList.add("hit");
+            } else {
+              cell.classList.add("miss");
+            }
+          });
+          board.appendChild(cell);
+        }
+      }
+document.querySelectorAll('.barco-img').forEach(img => {
+    img.addEventListener('dragstart', function(e) {
+        e.dataTransfer.setData('barco', img.src);
+        e.dataTransfer.setData('size', img.getAttribute('data-size'));
+    });
+});
+
+document.querySelectorAll('.cell').forEach(cell => {
+    cell.addEventListener('dragover', function(e) {
+        e.preventDefault();
+    });
+    cell.addEventListener('drop', function(e) {
+        e.preventDefault();
+        const barcoSrc = e.dataTransfer.getData('barco');
+        const size = parseInt(e.dataTransfer.getData('size'), 10) || 1;
+        if (barcoSrc && !cell.querySelector('img')) {
+            const x = parseInt(cell.dataset.x, 10);
+            const y = parseInt(cell.dataset.y, 10);
+
+            // Verifica si hay espacio suficiente horizontalmente
+            let canPlace = true;
+            for (let i = 0; i < size; i++) {
+                const nextCell = document.querySelector(`.cell[data-x="${x + i}"][data-y="${y}"]`);
+                if (!nextCell || nextCell.querySelector('img')) {
+                    canPlace = false;
+                    break;
+                }
+            }
+
+            if (canPlace) {
+                for (let i = 0; i < size; i++) {
+                    const nextCell = document.querySelector(`.cell[data-x="${x + i}"][data-y="${y}"]`);
+                    if (i === 0) {
+                        // Solo la primera celda muestra la imagen
+                        const barco = document.createElement('img');
+                        barco.src = barcoSrc;
+                        barco.alt = 'Barco';
+                        barco.style.width = `${30 * size + 2 * (size - 1)}px`; // Ajusta el ancho según el tamaño
+                        barco.style.height = '100%';
+                        barco.style.position = 'absolute';
+                        barco.style.left = '0';
+                        barco.style.top = '0';
+                        barco.style.pointerEvents = 'none';
+                        nextCell.style.position = 'relative';
+                        nextCell.appendChild(barco);
+                    }
+                    // Marca la celda como ocupada
+                    nextCell.classList.add('ocupado');
+                }
+            } 
+        }
+    });
+});
+    </script>
+  </body>
+</html>

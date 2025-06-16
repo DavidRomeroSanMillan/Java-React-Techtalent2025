@@ -1,0 +1,70 @@
+body {
+    background-color: #B408F7; /* Azul oscuro */
+    color: #edf2f4;            /* Blanco suave */
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+
+}
+h2 {
+    font-family:Arial, Helvetica, sans-serif;
+    text-align: center;
+    background-color: #F7B408;
+    color: #edf2f4;
+}
+
+header {
+    background-color: #F7B408; /* Rojo complementario */
+    color: #edf2f4;
+    padding: 2rem 0;
+    text-align: center;
+}
+.barcos-paleta {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    margin: 1rem 0;
+}
+.barco-img {
+    width: 60px;
+    height: auto;
+    cursor: grab;
+    user-select: none;
+}
+nav {
+    background-color: #08F7B4; /* Gris azulado */
+    padding: 1rem;
+    text-align: center;
+}
+
+nav a {
+    color: #2b2d42;
+    text-decoration: none;
+    margin: 0 1rem;
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+nav a:hover {
+    color: #ef233c;
+}
+
+main {
+    flex: 1;
+    padding: 2rem;
+    min-height: 60vh;
+}
+
+footer {
+    background-color: #F7B408;
+    color: #2b2d42;
+    text-align: center;
+    padding: 1rem 0;
+    min-height: 60px; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

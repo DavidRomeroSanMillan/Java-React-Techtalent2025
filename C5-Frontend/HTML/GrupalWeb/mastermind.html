@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Mastermind</title>
+    <link rel="stylesheet" href="styles.css" />
+    <style>
+      .mastermind-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin: 2rem auto;
+        max-width: 400px;
+      }
+      .mm-row {
+        display: flex;
+        align-items: center;
+        margin-bottom: 10px;
+      }
+      .mm-guess {
+        display: flex;
+        gap: 8px;
+      }
+      .mm-peg {
+        width: 28px;
+        height: 28px;
+        border-radius: 50%;
+        background: #8d99ae;
+        border: 2px solid #2b2d42;
+      }
+      .mm-feedback {
+        display: grid;
+        grid-template-columns: repeat(2, 12px);
+        grid-template-rows: repeat(2, 12px);
+        gap: 2px;
+        margin-left: 16px;
+      }
+      .mm-feedback-peg {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background: #edf2f4;
+        border: 1px solid #2b2d42;
+      }
+      .mm-secret {
+        display: flex;
+        gap: 8px;
+        margin-bottom: 20px;
+      }
+      .mm-secret .mm-peg {
+        background: #2b2d42;
+      }
+      .mm-colors {
+        display: flex;
+        gap: 10px;
+        margin-top: 20px;
+      }
+      .mm-color {
+        width: 28px;
+        height: 28px;
+        border-radius: 50%;
+        border: 2px solid #2b2d42;
+        cursor: pointer;
+      }
+      .mm-color.red {
+        background: #ef233c;
+      }
+      .mm-color.blue {
+        background: #3a86ff;
+      }
+      .mm-color.green {
+        background: #06d6a0;
+      }
+      .mm-color.yellow {
+        background: #ffd166;
+      }
+      .mm-color.purple {
+        background: #8338ec;
+      }
+      .mm-color.orange {
+        background: #ff8800;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>Mastermind</h1>
+    </header>
+    <nav>
+      <a href="WebGrupal.html">Inicio</a>
+      <a href="about.html">Sobre Nosotros</a>
+      <a href="HundirFlota.html">Hundir la Flota</a>
+      <a href="mastermind.html">Mastermind</a>
+    </nav>
+    <main>
+      <div class="mastermind-container">
+        <div class="mm-secret">
+          <div class="mm-peg"></div>
+          <div class="mm-peg"></div>
+          <div class="mm-peg"></div>
+          <div class="mm-peg"></div>
+        </div>
+        <div class="mm-row">
+          <div class="mm-guess">
+            <div class="mm-peg" style="background: #ef233c"></div>
+            <div class="mm-peg" style="background: #3a86ff"></div>
+            <div class="mm-peg" style="background: #ffd166"></div>
+            <div class="mm-peg" style="background: #06d6a0"></div>
+          </div>
+          <div class="mm-feedback">
+            <div class="mm-feedback-peg" style="background: #ef233c"></div>
+            <div class="mm-feedback-peg" style="background: #edf2f4"></div>
+            <div class="mm-feedback-peg" style="background: #edf2f4"></div>
+            <div class="mm-feedback-peg" style="background: #ef233c"></div>
+          </div>
+        </div>
+        <div class="mm-row">
+          <div class="mm-guess">
+            <div class="mm-peg" style="background: #8338ec"></div>
+            <div class="mm-peg" style="background: #ff8800"></div>
+            <div class="mm-peg" style="background: #3a86ff"></div>
+            <div class="mm-peg" style="background: #ffd166"></div>
+          </div>
+          <div class="mm-feedback">
+            <div class="mm-feedback-peg" style="background: #edf2f4"></div>
+            <div class="mm-feedback-peg" style="background: #ef233c"></div>
+            <div class="mm-feedback-peg" style="background: #edf2f4"></div>
+            <div class="mm-feedback-peg" style="background: #edf2f4"></div>
+          </div>
+        </div>
+        <!-- Más filas de ejemplo -->
+        <div class="mm-row">
+          <div class="mm-guess">
+            <div class="mm-peg"></div>
+            <div class="mm-peg"></div>
+            <div class="mm-peg"></div>
+            <div class="mm-peg"></div>
+          </div>
+          <div class="mm-feedback">
+            <div class="mm-feedback-peg"></div>
+            <div class="mm-feedback-peg"></div>
+            <div class="mm-feedback-peg"></div>
+            <div class="mm-feedback-peg"></div>
+          </div>
+        </div>
+        <div class="mm-row">
+          <div class="mm-guess">
+            <div class="mm-peg"></div>
+            <div class="mm-peg"></div>
+            <div class="mm-peg"></div>
+            <div class="mm-peg"></div>
+          </div>
+          <div class="mm-feedback">
+            <div class="mm-feedback-peg"></div>
+            <div class="mm-feedback-peg"></div>
+            <div class="mm-feedback-peg"></div>
+            <div class="mm-feedback-peg"></div>
+          </div>
+        </div>
+        <div class="mm-row">
+          <div class="mm-guess">
+            <div class="mm-peg"></div>
+            <div class="mm-peg"></div>
+            <div class="mm-peg"></div>
+            <div class="mm-peg"></div>
+          </div>
+          <div class="mm-feedback">
+            <div class="mm-feedback-peg"></div>
+            <div class="mm-feedback-peg"></div>
+            <div class="mm-feedback-peg"></div>
+            <div class="mm-feedback-peg"></div>
+          </div>
+        </div>
+        <div class="mm-row">
+          <div class="mm-guess">
+            <div class="mm-peg"></div>
+            <div class="mm-peg"></div>
+            <div class="mm-peg"></div>
+            <div class="mm-peg"></div>
+          </div>
+          <div class="mm-feedback">
+            <div class="mm-feedback-peg"></div>
+            <div class="mm-feedback-peg"></div>
+            <div class="mm-feedback-peg"></div>
+            <div class="mm-feedback-peg"></div>
+          </div>
+        </div>
+        <div class="mm-colors">
+          <div class="mm-color red"></div>
+          <div class="mm-color blue"></div>
+          <div class="mm-color green"></div>
+          <div class="mm-color yellow"></div>
+          <div class="mm-color purple"></div>
+          <div class="mm-color orange"></div>
+        </div>
+      </div>
+    </main>
+    <footer>
+      <p>&copy; 2025 Mi Sitio Web</p>
+    </footer>
+    <script>
+      document.querySelectorAll(".mm-color").forEach((color) => {
+        color.setAttribute("draggable", "true");
+        color.addEventListener("dragstart", function (e) {
+          e.dataTransfer.setData(
+            "color",
+            window.getComputedStyle(color).backgroundColor
+          );
+        });
+      });
+
+      document.querySelectorAll(".mm-row .mm-peg").forEach((peg) => {
+        peg.addEventListener("dragover", function (e) {
+          e.preventDefault();
+        });
+        peg.addEventListener("drop", function (e) {
+          e.preventDefault();
+          const color = e.dataTransfer.getData("color");
+          if (color) {
+            peg.style.backgroundColor = color;
+          }
+        });
+      });
+    </script>
+  </body>
+</html>
