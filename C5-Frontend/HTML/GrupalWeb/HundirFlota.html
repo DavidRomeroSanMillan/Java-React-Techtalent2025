@@ -60,10 +60,34 @@
     </nav>
 
     <main>
-        <div class="barcos-paleta">
-<img src="img/Barco1.png" alt="Barco 1" class="barco-img" draggable="true" data-barco="barco1" data-size="2">    <!-- <img src="img/barco2.png" alt="Barco 2" class="barco-img" draggable="true" data-barco="barco2"> -->
-    <!-- Añade más barcos según necesites -->
-</div>
+      <div class="barcos-paleta">
+        <img
+          src="img/Barco1.png"
+          alt="Barco 1"
+          class="barco-img"
+          draggable="true"
+          data-barco="barco1"
+          data-size="2"
+        />
+        <img
+          src="img/Barco2.png"
+          alt="Barco 2"
+          class="barco-img"
+          draggable="true"
+          data-barco="barco2"
+          data-size="3"
+          style="width: 90px"
+        />
+        <img
+          src="img/Barco3.png"
+          alt="Barco 3"
+          class="barco-img"
+          draggable="true"
+          data-barco="barco3"
+          data-size="4"
+          style="width: 120px"
+        />
+      </div>
       <div class="battleship-board" id="board"></div>
     </main>
     <footer>
@@ -73,7 +97,6 @@
       // Genera un tablero vacío de 10x10
       const board = document.getElementById("board");
       const size = 10;
-      // Ejemplo de posiciones de barcos (coordenadas simples)
       const ships = [
         { x: 2, y: 3 },
         { x: 2, y: 4 },
@@ -108,59 +131,72 @@
           board.appendChild(cell);
         }
       }
-document.querySelectorAll('.barco-img').forEach(img => {
-    img.addEventListener('dragstart', function(e) {
-        e.dataTransfer.setData('barco', img.src);
-        e.dataTransfer.setData('size', img.getAttribute('data-size'));
-    });
-});
+      document.querySelectorAll(".barco-img").forEach((img) => {
+        img.addEventListener("dragstart", function (e) {
+          e.dataTransfer.setData("barco", img.src);
+          e.dataTransfer.setData("size", img.getAttribute("data-size"));
+        });
+      });
 
-document.querySelectorAll('.cell').forEach(cell => {
-    cell.addEventListener('dragover', function(e) {
-        e.preventDefault();
-    });
-    cell.addEventListener('drop', function(e) {
-        e.preventDefault();
-        const barcoSrc = e.dataTransfer.getData('barco');
-        const size = parseInt(e.dataTransfer.getData('size'), 10) || 1;
-        if (barcoSrc && !cell.querySelector('img')) {
-            const x = parseInt(cell.dataset.x, 10);
-            const y = parseInt(cell.dataset.y, 10);
+      document.querySelectorAll(".cell").forEach((cell) => {
+        cell.addEventListener("dragover", function (e) {
+          e.preventDefault();
+        });
+        cell.addEventListener("drop", function (e) {
+          e.preventDefault();
+          const barcoSrc = e.dataTransfer.getData("barco");
+          const size = parseInt(e.dataTransfer.getData("size"), 10) || 1;
+          const x = parseInt(cell.dataset.x, 10);
+          const y = parseInt(cell.dataset.y, 10);
 
-            // Verifica si hay espacio suficiente horizontalmente
-            let canPlace = true;
-            for (let i = 0; i < size; i++) {
-                const nextCell = document.querySelector(`.cell[data-x="${x + i}"][data-y="${y}"]`);
-                if (!nextCell || nextCell.querySelector('img')) {
-                    canPlace = false;
-                    break;
-                }
+          // Verifica si hay espacio suficiente horizontalmente
+          let canPlace = true;
+          for (let i = 0; i < size; i++) {
+            const nextCell = document.querySelector(
+              `.cell[data-x="${x + i}"][data-y="${y}"]`
+            );
+            if (
+              !nextCell ||
+              nextCell.classList.contains("ocupado") ||
+              nextCell.querySelector("img")
+            ) {
+              canPlace = false;
+              break;
             }
+          }
 
-            if (canPlace) {
-                for (let i = 0; i < size; i++) {
-                    const nextCell = document.querySelector(`.cell[data-x="${x + i}"][data-y="${y}"]`);
-                    if (i === 0) {
-                        // Solo la primera celda muestra la imagen
-                        const barco = document.createElement('img');
-                        barco.src = barcoSrc;
-                        barco.alt = 'Barco';
-                        barco.style.width = `${30 * size + 2 * (size - 1)}px`; // Ajusta el ancho según el tamaño
-                        barco.style.height = '100%';
-                        barco.style.position = 'absolute';
-                        barco.style.left = '0';
-                        barco.style.top = '0';
-                        barco.style.pointerEvents = 'none';
-                        nextCell.style.position = 'relative';
-                        nextCell.appendChild(barco);
-                    }
-                    // Marca la celda como ocupada
-                    nextCell.classList.add('ocupado');
-                }
-            } 
-        }
-    });
-});
+          if (canPlace) {
+            for (let i = 0; i < size; i++) {
+              const nextCell = document.querySelector(
+                `.cell[data-x="${x + i}"][data-y="${y}"]`
+              );
+              nextCell.classList.add("ocupado");
+            }
+            if (!cell.querySelector("img")) {
+              const barco = document.createElement("img");
+              barco.src = barcoSrc;
+              barco.alt = "Barco";
+              barco.style.width = `${30 * size + 2 * (size - 1)}px`;
+              barco.style.height = "100%";
+              barco.style.position = "absolute";
+              barco.style.left = "0";
+              barco.style.top = "0";
+              barco.style.pointerEvents = "auto";
+              cell.style.position = "relative";
+              cell.appendChild(barco);
+
+              // Hacer la imagen clicable para marcar acierto
+              barco.addEventListener("click", function () {
+                barco.classList.toggle("hit");
+              });
+            }
+          } else {
+            alert("No hay espacio suficiente para colocar el barco aquí.");
+          }
+        });
+      });
+
+      nextCell.classList.add("ocupado");
     </script>
   </body>
 </html>

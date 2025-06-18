@@ -4,83 +4,6 @@
     <meta charset="UTF-8" />
     <title>Mastermind</title>
     <link rel="stylesheet" href="styles.css" />
-    <style>
-      .mastermind-container {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        margin: 2rem auto;
-        max-width: 400px;
-      }
-      .mm-row {
-        display: flex;
-        align-items: center;
-        margin-bottom: 10px;
-      }
-      .mm-guess {
-        display: flex;
-        gap: 8px;
-      }
-      .mm-peg {
-        width: 28px;
-        height: 28px;
-        border-radius: 50%;
-        background: #8d99ae;
-        border: 2px solid #2b2d42;
-      }
-      .mm-feedback {
-        display: grid;
-        grid-template-columns: repeat(2, 12px);
-        grid-template-rows: repeat(2, 12px);
-        gap: 2px;
-        margin-left: 16px;
-      }
-      .mm-feedback-peg {
-        width: 12px;
-        height: 12px;
-        border-radius: 50%;
-        background: #edf2f4;
-        border: 1px solid #2b2d42;
-      }
-      .mm-secret {
-        display: flex;
-        gap: 8px;
-        margin-bottom: 20px;
-      }
-      .mm-secret .mm-peg {
-        background: #2b2d42;
-      }
-      .mm-colors {
-        display: flex;
-        gap: 10px;
-        margin-top: 20px;
-      }
-      .mm-color {
-        width: 28px;
-        height: 28px;
-        border-radius: 50%;
-        border: 2px solid #2b2d42;
-        cursor: pointer;
-      }
-      .mm-color.red {
-        background: #ef233c;
-      }
-      .mm-color.blue {
-        background: #3a86ff;
-      }
-      .mm-color.green {
-        background: #06d6a0;
-      }
-      .mm-color.yellow {
-        background: #ffd166;
-      }
-      .mm-color.purple {
-        background: #8338ec;
-      }
-      .mm-color.orange {
-        background: #ff8800;
-      }
-    </style>
   </head>
   <body>
     <header>
@@ -128,7 +51,6 @@
             <div class="mm-feedback-peg" style="background: #edf2f4"></div>
           </div>
         </div>
-        <!-- Más filas de ejemplo -->
         <div class="mm-row">
           <div class="mm-guess">
             <div class="mm-peg"></div>

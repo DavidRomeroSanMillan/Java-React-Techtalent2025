@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+    <head>
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+  />
+</head>
+<body>
+<h1 id="estilo"> ¿Qué puede hacer JavaScript?</h1>
+<p id="par">JavaScript puede cambiar atributos HTML como en este caso el src de una imagen</p>
+
+<button onclick="document.getElementById('pato').src='../Prueba cambio imagenes/pato1.jpg'; 
+document.getElementById('estilo').style.color='GREEN'; 
+getElementById('par').style.fontSize='30px'">Muestra un Pato de Collar</button>
+
+<button onclick="document.getElementById('pato').src='../Prueba cambio imagenes/pato2.jpg'; 
+document.getElementById('estilo').style.color='ORANGE'; 
+getElementById('par').style.fontSize='35px'">O un Pato Mandarín</button>
+
+<button onclick="document.getElementById('pato').src='../Prueba cambio imagenes/pato3.jpg'; 
+document.getElementById('estilo').style.color='RED'; 
+getElementById('par').style.fontSize='20px'">O un Pato Moscovita</button>
+
+<button id="boton" onclick="document.getElementById('boton')
+.className='animate__animated animate__fadeOut'">Me desaparezco</button>
+
+<button id="boton" onclick="document.getElementById('pato')
+.className='animate__animated animate__fadeOut'">Desaparece el pato</button>
+
+<button id="boton" onclick="document.getElementById('pato')
+.className='animate__animated animate__fadeIn'">Aparece el pato</button>
+
+</br></br>
+<img id="pato" src= "../Prueba cambio imagenes/pato1.jpg" height="500px" width="700" 
+class="animate__animated animate__fadeInLeft">
+
+</body>
+</html>
