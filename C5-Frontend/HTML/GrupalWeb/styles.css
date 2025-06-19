@@ -14,11 +14,56 @@ h2 {
   background-color: #f7b408;
   color: #edf2f4;
 }
+.galeria {
+ display: flex;
+ flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+
+}
+.galeria img{
+  max-width: 100%;
+  max-height: 100%;
+  width: 250px;
+  height: 250px;
+  object-fit: cover;
+  border-radius: 50px;
+  transition: box-shadow 0.3s ease;
+  display: block;
+}
+.galeria img:hover{
+    box-shadow: 5px 5px 5px 5px violet;
+}
+
+.galeria-item {
+  position: relative;
+  display: flex;
+  border-radius: 50px;
+  height: 500px;
+  width: 280px;
+  background-color: #edf2f4;
+  align-items: center;
+  flex-direction: column;
+  padding-top: 1%;
+}
+.img-link{
+  display: none;
+  position: absolute;
+  bottom: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0, 0, 0, 7);
+  color: #fff;
+  padding: 4px 12px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-size: 14px;
+}
 
 header {
-  background-color: #f7b408; /* Rojo complementario */
-  color: #edf2f4;
-  padding: 2rem 0;
+  background-color: white; 
+  color: purple;
+  padding: 1rem 0;
   text-align: center;
 }
 .barcos-paleta {
