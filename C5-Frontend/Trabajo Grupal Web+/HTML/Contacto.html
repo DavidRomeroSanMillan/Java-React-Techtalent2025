@@ -4,36 +4,56 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="../CSS/style.css" />
-    <title>Document</title>
+    <title>Contacto</title>
   </head>
   <body>
     <header>
-      <h1>Contacta con nosotros</h1>
+      <h1>¡Contacta con nosotros!</h1>
     </header>
     <nav class="nav">
+      <a href="Inicio.html">Inicio</a>
       <a href="Contacto.html">Contacto</a>
       <a href="Blog.html">Blog</a>
       <a href="About.html">About</a>
     </nav>
+    <p class="p1">¿Quieres que te hagamos un recorrido personalizado por un destino que no aparece en nuestras listas? ¡Contacta con nosotros y deja que nuestra pasión por los viajes te alivie el trabajo!</p>
     <div class="p1">
-      <form action="">
+      <form id="contactoForm" action="">
         <label for="nombre">Nombre: </label><br />
-        <input type="text" /><br />
+        <input type="text" id="nombre" required/><br />
         <label for="apellidos">Apellidos: </label><br />
         <input type="text" /><br />
-        <label for="correo">Correo: </label><br />
-        <input type="email" name="" id="" /><br />
+        <label for="correo">Correo electrónico: </label><br />
+        <input type="email" name="" id="" required/><br />
         <label for="querytype">Guía personalizada</label>
         <input type="radio" name="radioquery" /><br />
         <label for="querytype">Otros</label>
-        <input type="radio" name="radioquery" /><br /><br>
+        <input type="radio" name="radioquery" /><br />
         <label for="comentario">Comentario: </label><br />
         <textarea type="text" name="" id="" rows="5" cols="40"></textarea><br />
         <button type="submit">Enviar</button>
       </form>
     </div>
     <footer>
-      <p>&copy; 2025 Mi Sitio Web</p>
+      <p>&copy; 2025 Viajes Placeholder</p>
     </footer>
+    <script>
+      document
+        .getElementById("contactoForm")
+        .addEventListener("submit", function (e) {
+          e.preventDefault();
+          const nombre = document.getElementById("nombre").value;
+          window.location.href =
+            window.location.pathname + "?nombre=" + encodeURIComponent(nombre);
+        });
+
+      window.addEventListener("DOMContentLoaded", function () {
+        const params = new URLSearchParams(window.location.search);
+        const nombre = params.get("nombre");
+        if (nombre) {
+          alert("Gracias por tu mensaje, " + nombre);
+        }
+      });
+    </script>
   </body>
 </html>
