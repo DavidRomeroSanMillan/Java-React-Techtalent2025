@@ -62,7 +62,16 @@ nav a {
   object-fit: cover;
   border-radius: 15%;
 }
-
+.centro-contenedor {
+  display: flex;
+  justify-content: center;  /* horizontal */
+  align-items: center;      /* vertical */
+  padding: 1%;            /* o el alto que necesites */
+}
+.centro-contenedor img{
+  width: 350px;
+  height: 300px;
+}
 .img-hover-overlay {
   position: absolute;
   top: 0;
@@ -103,11 +112,169 @@ nav a {
 .p1 {
   display: block;
   font-size: 1.5em;
-  text-align: center;
+  text-align: justify;
   background-color: aliceblue;
   padding: 1%;
 }
 button {
   height: 50px;
   width: 100px;
+}
+.form-text{
+    display: block;
+  font-size: 1.5em;
+  text-align: center;
+  background-color: aliceblue;
+  padding: 1%;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+.headerblog {
+  background-color: #0077b6;
+  color: white;
+  padding: 1rem;
+}
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 1rem;
+}
+nav ul li a {
+  color: white;
+  text-decoration: none;
+}
+nav ul li a.active {
+  text-decoration: underline;
+}
+main {
+  padding: 2rem;
+}
+.tabs button {
+  margin-right: 10px;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+}
+.continente {
+  margin-top: 1rem;
+}
+footer {
+  text-align: center;
+  padding: 1rem;
+  background-color: #f1f1f1;
+  margin-top: 2rem;
+}
+
+.lugares-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  justify-content: center;
+  margin-top: 1rem;
+}
+
+.lugar-card {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+  overflow: hidden;
+  width: 340px; /* antes 250px */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: transform 0.2s;
+}
+
+.lugar-card:hover {
+  transform: translateY(-5px) scale(1.03);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.18);
+}
+
+.lugar-card img {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+}
+
+.lugar-info {
+  padding: 1rem;
+  text-align: center;
+  font-size: 1rem;
+  color: #222;
+}
+
+.continente-titulo {
+  display: block;
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #0077b6;
+  margin-bottom: 0.5rem;
+  text-align: center;
+  letter-spacing: 2px;
+}
+
+.ciudad-titulo {
+  display: block;
+  font-size: 2rem;
+  font-weight: bold;
+  color: #023e8a;
+  margin-bottom: 0.5rem;
+  text-align: center;
+}
+.lugar-info {
+  white-space: pre-line;
+}
+
+.lugar-info {
+  white-space: pre-line;
+  text-align: left;
+}
+
+/* AQUI TERMINA EL BLOG */
+
+
+
+
+/* AQUÍ EMPIEZA EL ABOUT */
+
+.equipo-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  justify-content: center;
+  margin-top: 2rem;
+}
+.equipo-card {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+  width: 320px;
+  max-width: 100%;
+  padding: 1.5rem;
+  text-align: center;
+}
+.equipo-img {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 50%;
+  margin-bottom: 1rem;
+}
+.equipo-links a {
+  color: #0077b6;
+  text-decoration: none;
+  font-weight: bold;
+}
+.equipo-links a:hover {
+  text-decoration: underline;
+}
+
+.equipo-desc {
+  text-align: left;
+  margin-top: 1rem;
+  font-size: 1rem;
+  line-height: 1.6;
 }
