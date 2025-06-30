@@ -103,9 +103,9 @@ nav a {
 }
 .centro-contenedor {
   display: flex;
-  justify-content: center; /* horizontal */
-  align-items: center; /* vertical */
-  padding: 1%; /* o el alto que necesites */
+  justify-content: center; 
+  align-items: center; 
+  padding: 1%; 
 }
 .centro-contenedor img {
   width: 350px;
@@ -136,7 +136,7 @@ nav a {
 
 .img-hover-text {
   color: #2b2d42;
-  text-shadow: 2px 2px 5px orange;
+  text-shadow: 2px 2px 5px #0077b6;
   font-size: 2rem;
   font-weight: bold;
   text-align: center;
@@ -190,6 +190,9 @@ nav ul li a {
 nav ul li a.active {
   text-decoration: underline;
 }
+nav a:hover{
+  color: #0077b6;
+}
 main {
   padding: 2rem;
 }
@@ -201,7 +204,6 @@ main {
 .continente {
   margin-top: 1rem;
 }
-
 
 .lugares-grid {
   display: flex;
@@ -232,6 +234,7 @@ main {
   width: 100%;
   height: 150px;
   object-fit: cover;
+  
 }
 
 .lugar-info {
@@ -303,10 +306,11 @@ main {
 .equipo-links a:hover {
   text-decoration: underline;
 }
-
 .equipo-desc {
   text-align: left;
   margin-top: 1rem;
   font-size: 1rem;
   line-height: 1.6;
 }
+
+

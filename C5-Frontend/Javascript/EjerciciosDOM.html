@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+<p class="destacado">Primer párrafo</p>
+<p class="destacado">Segundo párrafo</p>
+<p>Tercer párrafo</p>
+
+<h2 class="titulo">Título 1</h2>
+<h2 class="titulo">Título 2</h2>
+
+<div class="ocultar">No quiero que me veas</div>
+<div class="ocultar">Tampoco a mí</div>
+
+<img src="../Trabajo Grupal Web+/IMG/arrowup.png" width="50px" height="50px">
+<img src="../Trabajo Grupal Web+/IMG/icono.png"width="50px" height="50px">
+<img src="../Trabajo Grupal Web+/IMG/mini.png"width="50px" height="50px">
+
+<button>Enviar</button>
+<button>Guardar</button>
+<button>Cancelar</button>
+
+<p>Selecciona tu género:</p>
+<label><input type="radio" name="genero" value="Masculino"> Masculino</label>
+<label><input type="radio" name="genero" value="Femenino"> Femenino</label>
+<button onclick="mostrarGenero()">Mostrar</button>
+<p id="resultado1"></p>
+
+<p>Selecciona tus lenguajes favoritos:</p>
+<label><input type="checkbox" name="lenguajes" value="JavaScript"> JavaScript</label>
+<label><input type="checkbox" name="lenguajes" value="Python"> Python</label>
+<label><input type="checkbox" name="lenguajes" value="Java"> Java</label>
+<button onclick="contarLenguajes()">Contar</button>
+<p id="resultado2"></p>
+
+<p>Notas del alumno:</p>
+<input type="number" name="nota" value="7">
+<input type="number" name="nota" value="8">
+<input type="number" name="nota" value="6">
+<button onclick="sumarNotas()">Sumar</button>
+<p id="resultado3"></p>
+
+</body>
+<script src="../Javascript/EjerciciosDOM.js"></script>
+</html>
