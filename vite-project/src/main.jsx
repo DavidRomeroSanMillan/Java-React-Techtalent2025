@@ -107,9 +107,8 @@ const retornaSpideyInfo = () => {
 const [alias, anyAparicion] = retornaSpideyInfo();
 console.log(alias, anyAparicion); // Spidey 2002
 
-//Un hook* en React es una función que permite usar el "estado" 
-// y otras características de React sin escribir una clase. 
-
+//Un hook* en React es una función que permite usar el "estado"
+// y otras características de React sin escribir una clase.
 
 // Simulación de un hook* tipo useState (como en React)
 const useSpiderState = (valor) => {
@@ -127,4 +126,35 @@ const [spiderNombre, lanzarTelaraña] = useSpiderState("Peter Parker");
 console.log(spiderNombre); // Peter Parker
 lanzarTelaraña(); // Lanzando telaraña desde Peter Parker
 
+const apiKey = "WMwSO8ODFND2mewaJR7jWiGWFJtDq1xw";
+const peticion = fetch(`http://api.giphy.com/v1/gifs/random?api_key=${apiKey}`);
 
+peticion
+  .then((resp) => resp.json())
+  .then(({ data }) => {
+    // Desestructuramos el objeto data para obtener la información del GIF ya que es "data.data"
+    const { url } = data.images.original;
+    //Primero creo la imagen con la url de Giphy
+    const img = document.createElement("img");
+    img.src = url;
+    // Luego la añado al body del documento
+    document.body.append(img);
+  })
+  .catch(console.warn);
+
+const getImagen = async () => {
+  try {
+    const apiKey = "WMwSO8ODFND2mewaJR7jWiGWFJtDq1xw";
+    const resp = await fetch(
+      `http://api.giphy.com/v1/gifs/random?api_key=${apiKey}`
+    );
+    const { data } = await resp.json();
+    const { url } = data.images.original;
+    const img = document.createElement("img");
+    img.src = url;
+    document.body.append(img);
+  } catch (error) {
+    console.error(error);
+  }
+};
+getImagen();
