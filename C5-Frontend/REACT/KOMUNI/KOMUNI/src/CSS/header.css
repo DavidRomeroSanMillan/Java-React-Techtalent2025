@@ -1,0 +1,12 @@
+.header {
+  background-color: aquamarine;
+  text-align: center;
+  padding: 5%;
+}
+.navegacion {
+  background-color: bisque;
+  padding: 1%;
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+}

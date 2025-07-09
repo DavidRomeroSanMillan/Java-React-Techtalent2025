@@ -1,0 +1,7 @@
+.avatar{
+    border-radius: 50%;
+    box-shadow: 3px 3px aqua;
+}
+.avatar:hover{
+    transform: scale(2);
+}
